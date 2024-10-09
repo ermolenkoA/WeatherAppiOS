@@ -5,9 +5,10 @@ xcuserdata/
 
 # Cocoapods
 Pods/
+Podfile.lock
+*.xcworkspace
 
 # Build Artifacts
 build/
 .build/
 DerivedData/
-hello.c
