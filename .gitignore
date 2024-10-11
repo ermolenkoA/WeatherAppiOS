@@ -3,11 +3,6 @@
 # Xcode personal settings
 xcuserdata/
 
-# Cocoapods
-Pods/
-Podfile.lock
-*.xcworkspace
-
 # Build Artifacts
 build/
 .build/
