@@ -1,10 +1,12 @@
 import UIKit
 
-final class ViewController: UIViewController {
+final class MainScreenViewController: UIViewController {
+
+    var presenter: MainScreenPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGreen
     }
-    
+
 }
