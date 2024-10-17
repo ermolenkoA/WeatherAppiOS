@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		442D0C662CBB1459009A4298 /* MainScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442D0C652CBB1459009A4298 /* MainScreenModel.swift */; };
 		442D0C682CBB14D4009A4298 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442D0C672CBB14D4009A4298 /* MainScreenPresenter.swift */; };
+		448825842CC04D0600C73D2B /* RswiftLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 448825832CC04D0600C73D2B /* RswiftLibrary */; };
+		448825AE2CC060AE00C73D2B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 448825AC2CC060AE00C73D2B /* Localizable.strings */; };
 		4489B4652CB9CAC50086DEC8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4489B4642CB9CAC50086DEC8 /* SnapKit */; };
+		449627A52CC11D9300FD7A9D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 449627A32CC11D9300FD7A9D /* Localizable.stringsdict */; };
 		44EC76F12CB6F0BD0023B313 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC76F02CB6F0BD0023B313 /* AppDelegate.swift */; };
 		44EC76F32CB6F0BD0023B313 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC76F22CB6F0BD0023B313 /* SceneDelegate.swift */; };
 		44EC76F52CB6F0BD0023B313 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC76F42CB6F0BD0023B313 /* MainScreenViewController.swift */; };
@@ -21,13 +24,18 @@
 /* Begin PBXFileReference section */
 		442D0C652CBB1459009A4298 /* MainScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenModel.swift; sourceTree = "<group>"; };
 		442D0C672CBB14D4009A4298 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
+		4488259E2CC059A800C73D2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		448825AD2CC060AE00C73D2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		449627A12CC11D4300FD7A9D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		449627A22CC11D4300FD7A9D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		449627A42CC11D9300FD7A9D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		449627AA2CC1BA3000FD7A9D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		44EC76ED2CB6F0BD0023B313 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44EC76F02CB6F0BD0023B313 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44EC76F22CB6F0BD0023B313 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		44EC76F42CB6F0BD0023B313 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		44EC76F92CB6F0BD0023B313 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44EC76FC2CB6F0BD0023B313 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		44EC76FE2CB6F0BD0023B313 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		44F59B842CBAF91D00D09871 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4489B4652CB9CAC50086DEC8 /* SnapKit in Frameworks */,
+				448825842CC04D0600C73D2B /* RswiftLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +64,8 @@
 		442D0C5D2CBAFAA0009A4298 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				449627A32CC11D9300FD7A9D /* Localizable.stringsdict */,
+				448825AC2CC060AE00C73D2B /* Localizable.strings */,
 				44EC76FB2CB6F0BD0023B313 /* LaunchScreen.storyboard */,
 				44EC76F92CB6F0BD0023B313 /* Assets.xcassets */,
 			);
@@ -116,7 +127,7 @@
 				442D0C5F2CBAFBBC009A4298 /* Models */,
 				442D0C622CBB12E5009A4298 /* Views */,
 				442D0C632CBB130F009A4298 /* Presenters */,
-				44EC76FE2CB6F0BD0023B313 /* Info.plist */,
+				4488259E2CC059A800C73D2B /* Info.plist */,
 				442D0C5D2CBAFAA0009A4298 /* Resources */,
 				442D0C5E2CBAFBB2009A4298 /* Coordinators */,
 			);
@@ -130,18 +141,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 44EC77012CB6F0BD0023B313 /* Build configuration list for PBXNativeTarget "Weather" */;
 			buildPhases = (
-				44EC76E92CB6F0BD0023B313 /* Sources */,
 				44EC76EA2CB6F0BD0023B313 /* Frameworks */,
+				44EC76E92CB6F0BD0023B313 /* Sources */,
 				44EC76EB2CB6F0BD0023B313 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				448825862CC04D5A00C73D2B /* PBXTargetDependency */,
 				4489B4692CB9CB4F0086DEC8 /* PBXTargetDependency */,
 			);
 			name = Weather;
 			packageProductDependencies = (
 				4489B4642CB9CAC50086DEC8 /* SnapKit */,
+				448825832CC04D0600C73D2B /* RswiftLibrary */,
 			);
 			productName = Weather;
 			productReference = 44EC76ED2CB6F0BD0023B313 /* Weather.app */;
@@ -169,11 +182,13 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 44EC76E42CB6F0BD0023B313;
 			packageReferences = (
 				4489B45E2CB9CAAF0086DEC8 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				4489B4632CB9CAC50086DEC8 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				448825822CC04D0600C73D2B /* XCRemoteSwiftPackageReference "R" */,
 			);
 			productRefGroup = 44EC76EE2CB6F0BD0023B313 /* Products */;
 			projectDirPath = "";
@@ -190,6 +205,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				44EC76FA2CB6F0BD0023B313 /* Assets.xcassets in Resources */,
+				449627A52CC11D9300FD7A9D /* Localizable.stringsdict in Resources */,
+				448825AE2CC060AE00C73D2B /* Localizable.strings in Resources */,
 				44EC76FD2CB6F0BD0023B313 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,6 +230,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		448825862CC04D5A00C73D2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 448825852CC04D5A00C73D2B /* RswiftGenerateInternalResources */;
+		};
 		4489B4692CB9CB4F0086DEC8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 4489B4682CB9CB4F0086DEC8 /* SwiftLintBuildToolPlugin */;
@@ -220,10 +241,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		448825AC2CC060AE00C73D2B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				448825AD2CC060AE00C73D2B /* en */,
+				449627A22CC11D4300FD7A9D /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		449627A32CC11D9300FD7A9D /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				449627A42CC11D9300FD7A9D /* en */,
+				449627AA2CC1BA3000FD7A9D /* ru */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		44EC76FB2CB6F0BD0023B313 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				44EC76FC2CB6F0BD0023B313 /* Base */,
+				449627A12CC11D4300FD7A9D /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -236,6 +276,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -299,6 +340,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -438,6 +480,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		448825822CC04D0600C73D2B /* XCRemoteSwiftPackageReference "R" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.7.0;
+			};
+		};
 		4489B45E2CB9CAAF0086DEC8 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint.git";
@@ -457,6 +507,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		448825832CC04D0600C73D2B /* RswiftLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 448825822CC04D0600C73D2B /* XCRemoteSwiftPackageReference "R" */;
+			productName = RswiftLibrary;
+		};
+		448825852CC04D5A00C73D2B /* RswiftGenerateInternalResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 448825822CC04D0600C73D2B /* XCRemoteSwiftPackageReference "R" */;
+			productName = "plugin:RswiftGenerateInternalResources";
+		};
 		4489B4642CB9CAC50086DEC8 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4489B4632CB9CAC50086DEC8 /* XCRemoteSwiftPackageReference "SnapKit" */;

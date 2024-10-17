@@ -1,5 +1,5 @@
 {
-  "originHash" : "9ff1a33f2086323116aff6dc1029595ce3c8b151cb25a94a314cabad69732eda",
+  "originHash" : "019745f85c930a3f6eda481a95e2127ce2e7541b0837d3af9461f2f84abadd2b",
   "pins" : [
     {
       "identity" : "collectionconcurrencykit",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "678d442c6f7828def400a70ae15968aef67ef52d",
         "version" : "1.8.3"
+      }
+    },
+    {
+      "identity" : "r.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mac-cain13/R.swift",
+      "state" : {
+        "revision" : "4ac2eb7e6157887c9f59dc5ccc5978d51546be6d",
+        "version" : "7.7.0"
       }
     },
     {
@@ -80,6 +89,15 @@
       "state" : {
         "revision" : "a853604c9e9a83ad9954c7e3d2a565273982471f",
         "version" : "7.0.2"
+      }
+    },
+    {
+      "identity" : "xcodeedit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tomlokhorst/XcodeEdit",
+      "state" : {
+        "revision" : "017d23f71fa8d025989610db26d548c44cacefae",
+        "version" : "2.10.2"
       }
     },
     {
