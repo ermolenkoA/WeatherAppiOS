@@ -8,7 +8,7 @@ final class DayWeatherCollectionViewCell: UICollectionViewCell {
     private lazy var dayLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = R.font.nunitoBold(size: 14)
+        label.font = R.font.nunitoBold(size: 16)
         label.textColor = R.color.gray200()
         return label
     }()
@@ -31,7 +31,7 @@ final class DayWeatherCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.font = R.font.nunitoBold(size: 16)
-        label.textColor = R.color.gray100()
+        label.textColor = R.color.gray400()
         return label
     }()
 
@@ -55,26 +55,26 @@ final class DayWeatherCollectionViewCell: UICollectionViewCell {
         }
 
         weatherImageView.snp.makeConstraints { make in
-            make.top.equalTo(dayLabel.snp.bottom)
+            make.top.equalTo(dayLabel.snp.bottom).offset(12)
             make.width.equalToSuperview()
-            make.height.equalTo(weatherImageView.snp.width)
+            make.height.equalTo(weatherImageView.snp.width).multipliedBy(0.8)
         }
 
         dayTemperatureLabel.snp.makeConstraints { make in
-            make.top.equalTo(weatherImageView.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(weatherImageView.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview()
         }
 
         nightTemperatureLabel.snp.makeConstraints { make in
-            make.top.equalTo(dayTemperatureLabel.snp.bottom)
+            make.top.equalTo(dayTemperatureLabel.snp.bottom).offset(5)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
 
     func configure(with data: DayWeather) {
         dayLabel.text = data.day
-        weatherImageView.image = data.imageWeather
-        dayTemperatureLabel.text = data.dayTemperature
-        nightTemperatureLabel.text = data.nightTemperature
+        weatherImageView.image = data.icon
+        dayTemperatureLabel.text = String(data.maxTemp)
+        nightTemperatureLabel.text = String(data.minTemp)
     }
 }

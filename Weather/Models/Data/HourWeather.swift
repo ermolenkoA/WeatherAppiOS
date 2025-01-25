@@ -1,9 +1,7 @@
 import UIKit
 
 struct HourWeather {
-    let timeText: String
-    let image: UIImage?
-    let temperatureText: String
+    let time: Int
+    let icon: UIImage
+    let temp: Int
 }
-
-

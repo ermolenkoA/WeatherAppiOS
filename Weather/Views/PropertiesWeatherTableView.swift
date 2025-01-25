@@ -43,8 +43,16 @@ extension PropertiesWeatherTableView: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PropertiesWeatherTableCell.identifier, for: indexPath) as? PropertiesWeatherTableCell else {
-            return UITableViewCell()
+        guard let cell = tableView
+            .dequeueReusableCell(
+                withIdentifier: PropertiesWeatherTableCell.identifier,
+                for: indexPath
+            ) as? PropertiesWeatherTableCell else { return UITableViewCell() }
+
+        if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: frame.width)
+        } else {
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         }
 
         let cellData = data[indexPath.row]

@@ -14,9 +14,9 @@ final class HourWeatherCollectionView: UICollectionView {
         // Инициализация данных
         self.data = (0..<columnCount).map { index in
             HourWeather(
-                timeText: "\(index + 12)",
-                image: R.image.weatherFewCloudsMomentNightIcon(),
-                temperatureText: "32"
+                time: index + 12,
+                icon: R.image.weatherFewCloudsMomentNightIcon()!,
+                temp: 32
             )
         }
 
@@ -78,7 +78,7 @@ extension HourWeatherCollectionView: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath) -> CGSize {
             return CGSize(
                 width: frame.width / 6,
-                height: frame.height - 20)
+                height: frame.height - 10)
     }
 
     func collectionView(

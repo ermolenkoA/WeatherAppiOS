@@ -9,7 +9,7 @@ final class HourWeatherCollectionViewCell: UICollectionViewCell {
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = R.font.nunitoBold(size: 14)
+        label.font = R.font.nunitoBold(size: 16)
         label.textColor = R.color.gray200()
         return label
     }()
@@ -23,7 +23,7 @@ final class HourWeatherCollectionViewCell: UICollectionViewCell {
     private lazy var temperatureLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = R.font.nunitoBold(size: 16)
+        label.font = R.font.nunitoBold(size: 15)
         label.textColor = R.color.gray100()
         return label
     }()
@@ -42,13 +42,15 @@ final class HourWeatherCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(weatherImageView)
         contentView.addSubview(temperatureLabel)
 
-        timeLabel.snp.makeConstraints { make in            make.top.leading.trailing.equalToSuperview()
+        timeLabel.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
         }
 
         weatherImageView.snp.makeConstraints { make in
             make.top.equalTo(timeLabel.snp.bottom)
             make.width.equalToSuperview()
             make.height.equalTo(weatherImageView.snp.width)
+            make.center.equalToSuperview()
         }
 
         temperatureLabel.snp.makeConstraints { make in
@@ -58,8 +60,8 @@ final class HourWeatherCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(with data: HourWeather) {
-        timeLabel.text = data.timeText
-        weatherImageView.image = data.image
-        temperatureLabel.text = data.temperatureText
+        timeLabel.text = String(data.time)
+        weatherImageView.image = data.icon
+        temperatureLabel.text = R.string.localizable.temperatureC(data.temp)
     }
 }

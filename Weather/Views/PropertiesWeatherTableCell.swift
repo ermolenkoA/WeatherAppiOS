@@ -15,16 +15,16 @@ final class PropertiesWeatherTableCell: UITableViewCell {
     private lazy var propertyLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = R.font.nunitoRegular(size: 16)
-        label.textColor = R.color.gray100()
+        label.font = R.font.nunitoBold(size: 16)
+        label.textColor = R.color.gray200()
         return label
     }()
 
     private lazy var valueLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = R.font.nunitoRegular(size: 20)
-        label.textColor = R.color.gray200()
+        label.font = R.font.nunitoBold(size: 16)
+        label.textColor = R.color.gray100()
         return label
     }()
 
@@ -48,7 +48,6 @@ final class PropertiesWeatherTableCell: UITableViewCell {
             make.leading.equalToSuperview().offset(7)
             make.height.equalToSuperview().multipliedBy(0.5)
             make.width.equalTo(weatherImageView.snp.height)
-
         }
 
         propertyLabel.snp.makeConstraints { make in
@@ -66,10 +65,9 @@ final class PropertiesWeatherTableCell: UITableViewCell {
         }
     }
 
-    func configure(with data: PropertiesWeather) {
-        weatherImageView.image = data.iconImage
-        propertyLabel.text = data.propertyText
-        valueLabel.text = data.valueText
-
+    func configure(icon: UIImage, label: String, value: String) {
+        weatherImageView.image = icon
+        propertyLabel.text = label
+        valueLabel.text = value
     }
 }

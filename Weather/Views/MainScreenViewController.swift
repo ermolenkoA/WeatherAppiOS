@@ -9,6 +9,7 @@ final class MainScreenViewController: UIViewController {
     private lazy var weatherScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.backgroundColor = R.color.gray900()
         return scrollView
     }()
 
@@ -46,10 +47,12 @@ final class MainScreenViewController: UIViewController {
 
     private lazy var propertiesWeatherTableView: PropertiesWeatherTableView = {
         let tableView = PropertiesWeatherTableView()
-        tableView.separatorColor = R.color.gray400()
         tableView.layer.cornerRadius = 15
         tableView.layer.masksToBounds = true
         tableView.clipsToBounds = true
+        tableView.allowsSelection = false
+        tableView.separatorColor = R.color.gray500()
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         return tableView
     }()
 
@@ -89,7 +92,7 @@ final class MainScreenViewController: UIViewController {
         weatherContentView.addSubview(dayWeatherCollectionView)
 
         weatherScrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
 
         weatherContentView.snp.makeConstraints { make in
@@ -109,22 +112,22 @@ final class MainScreenViewController: UIViewController {
         }
         
         hourWeatherCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(weatherBackgroundView.snp.bottom).offset(15)
+            make.top.equalTo(weatherBackgroundView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(130)
+            make.height.equalTo(140)
         }
 
         propertiesWeatherTableView.snp.makeConstraints { make in
-            make.top.equalTo(hourWeatherCollectionView.snp.bottom).offset(15)
+            make.top.equalTo(hourWeatherCollectionView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(250)
         }
 
         dayWeatherCollectionView.snp.makeConstraints { make in
-            make.top.equalTo(propertiesWeatherTableView.snp.bottom).offset(15)
+            make.top.equalTo(propertiesWeatherTableView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(130)
-            make.bottom.equalToSuperview().offset(-15)
+            make.height.equalTo(160)
+            make.bottom.equalToSuperview()
         }
     }
 }

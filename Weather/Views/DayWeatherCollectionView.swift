@@ -15,9 +15,9 @@ final class DayWeatherCollectionView: UICollectionView {
         self.data = (0..<columnCount).map { index in
             DayWeather(
                 day: "Mon",
-                imageWeather: R.image.weatherFewCloudsMomentNightIcon(),
-                dayTemperature: "32",
-                nightTemperature: "28"
+                icon: R.image.weatherFewCloudsMomentNightIcon()!,
+                maxTemp: 32,
+                minTemp: 29
             )
         }
 
