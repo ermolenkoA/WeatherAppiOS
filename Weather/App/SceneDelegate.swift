@@ -2,8 +2,8 @@ import UIKit
 
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
-    var window: UIWindow?
-    
+    var appCoordinator: AppCoordinator?
+
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
@@ -12,11 +12,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         // Создаем окно
-        window = UIWindow(windowScene: windowScene)
-        
-        let initialViewController = ViewController()
-        window?.rootViewController = initialViewController
-        window?.makeKeyAndVisible()
+        appCoordinator = AppCoordinator(window: UIWindow(windowScene: windowScene))
+        appCoordinator?.showMainScreen()
     }
-    
+
 }
