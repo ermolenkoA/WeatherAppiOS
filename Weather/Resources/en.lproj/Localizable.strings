@@ -1,4 +1,3 @@
-"greeting" = "Hello, %@!";
 "temperatureC" = "%d°C";
 "temperature" = "Air Temperature";
 "probability" = "Precipitation probability";
@@ -33,7 +32,20 @@
 "dec" = "december";
 "percent" = "%d%%";
 "speed" = "%d km/h";
-"cloudy" = "Cloudy, no precipitation";
-"clearly" = "Clearly, no precipitation";
-"rainy" = "Rainy";
-"cloudy+rain" = "Cloudy, rain is expected";
+"cloudy" = "Cloudy";
+"partly-cloudy" = "Partly cloudy";
+"overcast" = "Overcast";
+"clear" = "Clear";
+"light-rain" = "Light rain";
+"rain" = "Rain";
+"heavy-rain" = "Heavy rain";
+"showers" = "Showers";
+"wet-snow" = "Wet snow";
+"light-snow" = "Light snow";
+"snow" = "Snow";
+"snow-showers" = "Snow showers";
+"hail" = "Hail";
+"thunderstorm" = "Thunderstorm";
+"thunderstorm-with-rain" = "Thunderstorm with rain";
+"thunderstorm-with-hail" = "Thunderstorm with hail";
+

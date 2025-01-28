@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "Weather=Clear, Moment=Day.png",
+      "filename" : "snowflake (1).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Weather=Clear, Moment=Day@2x.png",
+      "filename" : "snowflake (2).png",
       "idiom" : "universal",
       "scale" : "2x"
     },

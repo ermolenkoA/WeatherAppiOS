@@ -1,7 +1,7 @@
 import UIKit
 
-struct HourWeather {
+struct HourWeather: Codable {
     let time: Int
-    let icon: UIImage
+    let info: Weather
     let temp: Int
 }

@@ -1,8 +1,8 @@
 import UIKit
 
-struct DayWeather {
+struct DayWeather: Codable {
     let day: String
-    let icon: UIImage
+    let info: Weather
     let maxTemp: Int
     let minTemp: Int
 }

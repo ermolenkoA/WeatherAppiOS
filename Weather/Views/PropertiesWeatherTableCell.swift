@@ -65,9 +65,9 @@ final class PropertiesWeatherTableCell: UITableViewCell {
         }
     }
 
-    func configure(icon: UIImage, label: String, value: String) {
-        weatherImageView.image = icon
-        propertyLabel.text = label
-        valueLabel.text = value
+    func configure(with data: Property) {
+        weatherImageView.image = data.info.icon()
+        propertyLabel.text = data.info.name()
+        valueLabel.text = data.value
     }
 }

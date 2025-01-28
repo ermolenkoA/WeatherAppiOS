@@ -12,13 +12,7 @@ final class HourWeatherCollectionView: UICollectionView {
         self.columnCount = columnCount
 
         // Инициализация данных
-        self.data = (0..<columnCount).map { index in
-            HourWeather(
-                time: index + 12,
-                icon: R.image.weatherFewCloudsMomentNightIcon()!,
-                temp: 32
-            )
-        }
+        self.data = []
 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -42,6 +36,11 @@ final class HourWeatherCollectionView: UICollectionView {
         self.register(
             HourWeatherCollectionViewCell.self,
             forCellWithReuseIdentifier: HourWeatherCollectionViewCell.identifier)
+    }
+
+    func setData(data: [HourWeather]) {
+        self.data = data
+        self.reloadData()
     }
 
 }
@@ -86,6 +85,6 @@ extension HourWeatherCollectionView: UICollectionViewDelegateFlowLayout {
             layout collectionViewLayout: UICollectionViewLayout,
             insetForSectionAt section: Int
         ) -> UIEdgeInsets {
-            return .zero
+            return .init(top: 0, left: 1, bottom: 0, right: 1)
     }
 }

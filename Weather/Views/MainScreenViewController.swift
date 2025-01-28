@@ -6,10 +6,26 @@ final class MainScreenViewController: UIViewController {
 
     var presenter: MainScreenPresenter?
 
+    lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        control.tintColor = .white
+        return control
+    }()
+
+    lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.backgroundColor = R.color.gray900()
+        activityIndicator.style = .large
+        activityIndicator.color = .white
+        return activityIndicator
+    }()
+
     private lazy var weatherScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         scrollView.backgroundColor = R.color.gray900()
+        scrollView.refreshControl = refreshControl
         return scrollView
     }()
 
@@ -68,21 +84,25 @@ final class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.color.gray900()
-        layoutWeatherView()
-        setWeatherData()
+        makeConstraints()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.prepareView()
+    }
+
+    func setWeatherData(_ data: WeatherModel) {
+        weatherView.setData(data)
+        hourWeatherCollectionView.setData(data: data.hourWeather)
+        propertiesWeatherTableView.setData(data: data.properties)
+        dayWeatherCollectionView.setData(data: data.dailyweather)
+    }
+
+    @objc private func refreshData() {
+        presenter?.updateMainScreen()
     }
     
-    func setWeatherData() {
-        weatherView.cityLabel.text = "ntvbrefweffewff"
-        weatherView.dateLabel.text = "efhnwekjvgnwfewfwe"
-        weatherView.temperatureLabel.text = "28"
-        weatherView.dayTemperatureLabel.text = "28/32"
-        weatherView.descriptionLabel.text = "ekfjnwkef"
-        weatherView.weatherImageView.image = R.image.weatherClearMomentNightIcon()
-
-    }
-
-    private func layoutWeatherView() {
+    private func makeConstraints() {
         view.addSubview(weatherScrollView)
         weatherScrollView.addSubview(weatherContentView)
         weatherContentView.addSubview(weatherBackgroundView)
@@ -90,6 +110,7 @@ final class MainScreenViewController: UIViewController {
         weatherContentView.addSubview(hourWeatherCollectionView)
         weatherContentView.addSubview(propertiesWeatherTableView)
         weatherContentView.addSubview(dayWeatherCollectionView)
+        view.addSubview(activityIndicatorView)
 
         weatherScrollView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
@@ -128,6 +149,10 @@ final class MainScreenViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(160)
             make.bottom.equalToSuperview()
+        }
+
+        activityIndicatorView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }

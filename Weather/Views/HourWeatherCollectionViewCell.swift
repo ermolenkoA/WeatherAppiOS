@@ -61,7 +61,7 @@ final class HourWeatherCollectionViewCell: UICollectionViewCell {
 
     func configure(with data: HourWeather) {
         timeLabel.text = String(data.time)
-        weatherImageView.image = data.icon
+        weatherImageView.image = data.info.icon()
         temperatureLabel.text = R.string.localizable.temperatureC(data.temp)
     }
 }

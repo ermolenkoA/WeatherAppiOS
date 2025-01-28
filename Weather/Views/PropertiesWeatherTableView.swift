@@ -4,18 +4,11 @@ import RswiftResources
 
 final class PropertiesWeatherTableView: UITableView {
 
-    private let rowCount = 5 
-    private var data: [PropertiesWeather]
+    private var data: [Property]
 
     init() {
         
-        self.data = (0..<rowCount).map { index in
-            PropertiesWeather(
-                iconImage: R.image.typeCloudRainLight(),
-                propertyText: "Property \(index + 1)",
-                valueText: "\(32 + index)"
-            )
-        }
+        self.data = []
 
         super.init(frame: .zero, style: .plain)
         setupTableView()
@@ -33,13 +26,18 @@ final class PropertiesWeatherTableView: UITableView {
         self.estimatedRowHeight = 50
         self.backgroundColor = R.color.gray800()
     }
+
+    func setData(data: [Property]) {
+        self.data = data
+        self.reloadData()
+    }
 }
 
 // MARK: - UITableViewDataSource
 
 extension PropertiesWeatherTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rowCount
+        return data.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

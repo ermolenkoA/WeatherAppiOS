@@ -12,14 +12,7 @@ final class DayWeatherCollectionView: UICollectionView {
         self.columnCount = columnCount
 
         // Инициализация данных
-        self.data = (0..<columnCount).map { index in
-            DayWeather(
-                day: "Mon",
-                icon: R.image.weatherFewCloudsMomentNightIcon()!,
-                maxTemp: 32,
-                minTemp: 29
-            )
-        }
+        self.data = []
 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -43,6 +36,11 @@ final class DayWeatherCollectionView: UICollectionView {
         self.register(
             DayWeatherCollectionViewCell.self,
             forCellWithReuseIdentifier: DayWeatherCollectionViewCell.identifier)
+    }
+
+    func setData(data: [DayWeather]) {
+        self.data = data
+        self.reloadData()
     }
 
 }
@@ -87,6 +85,6 @@ extension DayWeatherCollectionView: UICollectionViewDelegateFlowLayout {
             layout collectionViewLayout: UICollectionViewLayout,
             insetForSectionAt section: Int
         ) -> UIEdgeInsets {
-            return .zero
+            return .init(top: 0, left: 1, bottom: 0, right: 1)
     }
 }

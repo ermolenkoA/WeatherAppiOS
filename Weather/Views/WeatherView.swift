@@ -20,21 +20,21 @@ final class WeatherView: UIImageView {
     lazy var temperatureLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = R.font.nunitoExtraBold(size: 60)
+        label.font = R.font.nunitoExtraBold(size: 45)
         return label
     }()
 
     lazy var dayTemperatureLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = R.font.nunitoBold(size: 22)
+        label.font = R.font.nunitoBold(size: 18)
         return label
     }()
 
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = R.font.nunitoRegular(size: 20)
+        label.font = R.font.nunitoRegular(size: 18)
         return label
     }()
 
@@ -54,6 +54,18 @@ final class WeatherView: UIImageView {
         super.init(coder: coder)
         setupView()
         setupConstraints()
+    }
+
+    func setData(_ data: WeatherModel) {
+        cityLabel.text = data.city
+        dateLabel.text = data.date
+        temperatureLabel.text = R.string.localizable.temperatureC(data.tempC)
+        dayTemperatureLabel.text = R.string.localizable.temperatureC(data.tempMin)
+            + "/"
+            + R.string.localizable.temperatureC(data.tempMax)
+        descriptionLabel.text = data.info.description()
+        weatherImageView.image = data.info.icon()
+        image = data.info.background()
     }
 
     private func setupView() {
@@ -103,7 +115,7 @@ final class WeatherView: UIImageView {
         weatherImageView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.6)
+            make.width.equalToSuperview().multipliedBy(0.5)
             make.height.equalTo(weatherImageView.snp.width)
         }
     }

@@ -1,4 +1,3 @@
-"greeting" = "Привет, %@!";
 "temperature" = "Температура воздуха";
 "probability" = "Вероятность осадков";
 "windVelocity" = "Скорость ветра";
@@ -31,8 +30,22 @@
 "nov" = "ноября";
 "dec" = "декабря";
 "speed" = "%d км/ч";
-"cloudy" = "Облачно, без осадков";
-"clearly" = "Ясно, без осадков";
-"rainy" = "Дождливо";
-"cloudy+rain" = "Пасмурно, ожидается дождь";
+"cloudy" = "Облачно";
+"partly-cloudy" = "Малооблачно";
+"overcast" = "Пасмурно";
+"clear" = "Ясно";
+"rain" = "Дождь";
+"light-rain" = "Небольшой дождь";
+"heavy-rain" = "Сильный дождь";
+"showers" = "Ливень";
+"wet-snow" = "Дождь со снегом";
+"light-snow" = "Небольшой снег";
+"snow" = "Снег";
+"snow-showers" = "Снегопад";
+"hail" = "Град";
+"thunderstorm" = "Гроза";
+"thunderstorm-with-rain" = "Дождь с грозой";
+"thunderstorm-with-hail" = "Гроза с градом";
+
+
 
