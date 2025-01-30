@@ -28,7 +28,10 @@ extension Date {
     ]
 
     func getHours() -> Int {
-        Calendar.current.component(.hour, from: self)
+        let utcTimeZone = TimeZone(abbreviation: "UTC")!
+        var calendar = Calendar.current
+        calendar.timeZone = utcTimeZone
+        return calendar.component(.hour, from: self)
     }
 
     static func getDayOfWeek(from dateString: String) -> Int? {

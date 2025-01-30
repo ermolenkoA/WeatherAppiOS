@@ -149,16 +149,9 @@ final class MainScreenModel {
               let offset = tzinfo[API.DataKeys.Info.TZInfo.offset] as? Int else {
             return nil
         }
-        if let timeZone = TimeZone(secondsFromGMT: offset) {
-            let currentDate = Date()
-            let calendar = Calendar.current
-
-            // Создаем новый объект даты с учетом временной зоны
-            let dateInTimeZone = calendar.date(byAdding: .second, value: offset, to: currentDate)
-
-            return dateInTimeZone
-        }
-        return nil
+        let currentDate = Date()
+        let dateInTimeZone = Calendar.current.date(byAdding: .second, value: offset, to: currentDate)
+        return dateInTimeZone
     }
 
     private func mockData() async -> WeatherModel {

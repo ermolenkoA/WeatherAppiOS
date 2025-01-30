@@ -5,8 +5,8 @@ final class MainScreenPresenter {
     private weak var view: MainScreenViewController?
     private var model: MainScreenModel?
     private weak var coordinator: AppCoordinator?
-    let lat = 54.221440
-    let lon = 28.501430
+    let lat = 33.950636
+    let lon = -117.746259   
 
     init(_ view: MainScreenViewController? = nil,
          _ model: MainScreenModel? = nil,

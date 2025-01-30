@@ -10,10 +10,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         options connectionOptions: UIScene.ConnectionOptions
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        // Создаем окно
         appCoordinator = AppCoordinator(window: UIWindow(windowScene: windowScene))
         appCoordinator?.showMainScreen()
-    }
 
+    }
 }
