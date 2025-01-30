@@ -58,7 +58,7 @@ final class WeatherView: UIImageView {
 
     func setData(_ data: WeatherModel) {
         cityLabel.text = data.city
-        dateLabel.text = data.date
+        dateLabel.text = data.date.fullForecastDate
         temperatureLabel.text = R.string.localizable.temperatureC(data.tempC)
         dayTemperatureLabel.text = R.string.localizable.temperatureC(data.tempMin)
             + "/"

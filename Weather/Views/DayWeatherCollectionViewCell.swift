@@ -72,7 +72,7 @@ final class DayWeatherCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(with data: DayWeather) {
-        dayLabel.text = data.day
+        dayLabel.text = ForecastDate.weekdayShortName(data.weekday)
         weatherImageView.image = data.info.icon()
         dayTemperatureLabel.text = R.string.localizable.temperatureC(data.maxTemp)
         nightTemperatureLabel.text = R.string.localizable.temperatureC(data.minTemp)

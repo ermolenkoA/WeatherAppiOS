@@ -5,8 +5,8 @@ final class MainScreenPresenter {
     private weak var view: MainScreenViewController?
     private var model: MainScreenModel?
     private weak var coordinator: AppCoordinator?
-    private var long = 2
-    private var lat = 3
+    let lat = 54.221440
+    let lon = 28.501430
 
     init(_ view: MainScreenViewController? = nil,
          _ model: MainScreenModel? = nil,
@@ -21,19 +21,20 @@ final class MainScreenPresenter {
             view?.setWeatherData(data)
         } else {
             view?.activityIndicatorView.startAnimating()
-
             updateMainScreen()
         }
     }
 
     func updateMainScreen() {
-        Task { [weak self] in
-            let data = await self!.model!.getData(long: self!.long, lat: self!.lat)
+        model?.getData(lon: self.lon, lat: self.lat) { [weak self, view] error, data in
+            guard let data else { return }
             guard let self, let view else { return }
-            await view.setWeatherData(data)
-            Storage.saveWeatherModel(data)
-            await view.refreshControl.endRefreshing()
-            await view.activityIndicatorView.stopAnimating()
+            DispatchQueue.main.async {
+                view.setWeatherData(data)
+                Storage.saveWeatherModel(data)
+                view.refreshControl.endRefreshing()
+                view.activityIndicatorView.stopAnimating()
+            }
         }
     }
 }
