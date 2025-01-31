@@ -5,14 +5,13 @@ final class MainScreenModel {
     weak var presenter: MainScreenPresenter?
 
     func getData(
-        lon: Double,
-        lat: Double,
+        _ city: City,
         completion: @escaping (APIError?, WeatherModel?) -> Void
     ) {
-        let request = API.createRequest(lat: lat, lon: lon)
-        
+        let request = WeatherAPI.createRequest(lat: city.latitude, lon: city.longitude)
+
         let session = URLSession.shared
-        session.dataTask(with: request) { [weak self] data, response, error in
+        session.dataTask(with: request) { [weak self] data, _, error in
             if let error {
                 completion(.network, nil)
                 return
@@ -20,34 +19,39 @@ final class MainScreenModel {
 
             if let data, let JSONObject = try? JSONSerialization.jsonObject(
                 with: data, options: [] ) as? [String: Any] {
-                let model = self?.parseWeatherModel(JSONObject)
-                completion(model == nil ? .dataParse : nil, model)
+                do {
+                    let model = try self?.parseWeatherModel(JSONObject, city)
+                    completion(nil, model)
+                } catch let error as APIError {
+                    completion(error, nil)
+                } catch {
+                    let wrappedError = APIError.dataParse(what: "Unexpected error: \(error.localizedDescription)")
+                    completion(wrappedError, nil)
+                }
             } else {
                 completion(.noData, nil)
             }
         }.resume()
     }
 
-    private func parseWeatherModel(_ data: [String: Any]) -> WeatherModel? {
-        guard let info = data[API.DataKeys.Info.name] as? [String: Any],
-              let fact = data[API.DataKeys.Fact.name] as? [String: Any],
-              let forecasts = data[API.DataKeys.Forecasts.name] as? [[String: Any]],
-              let temp = fact[API.DataKeys.Fact.temp] as? Int,
-              let condition = fact[API.DataKeys.Fact.condition] as? String,
-              let date = parseDate(info),
-              let partOfDay = getSunTimes(date, forecasts[0])?.getCurrentPartOfDay(),
+    private func parseWeatherModel(_ data: [String: Any], _ city: City) throws -> WeatherModel {
+        guard let info = data[WeatherAPI.DataKeys.Info.name] as? [String: Any],
+              let fact = data[WeatherAPI.DataKeys.Fact.name] as? [String: Any],
+              let forecasts = data[WeatherAPI.DataKeys.Forecasts.name] as? [[String: Any]],
+              let temp = fact[WeatherAPI.DataKeys.Fact.temp] as? Int,
+              let condition = fact[WeatherAPI.DataKeys.Fact.condition] as? String,
+              let date = try parseDate(info),
+              let partOfDay = try getSunTimes(date, forecasts[0])?.getCurrentPartOfDay(),
               let weather = Weather(condition, partOfDay) else {
-            return nil
+            throw APIError.dataParse(what: "Error while parsing WeatherModel")
         }
-        let properties = parseProperties(fact)
-        let hourWeather = parseHourWeather(forecasts, date)
-        let dayWeather = parseDayWeather(forecasts)
-        guard !properties.isEmpty && !hourWeather.isEmpty && !dayWeather.isEmpty else {
-            return nil
-        }
+        let properties = try parseProperties(fact)
+        let hourWeather = try parseHourWeather(forecasts, date)
+        let dayWeather = try parseDayWeather(forecasts)
+
         return WeatherModel(
             info: weather,
-            city: "Борисов",
+            city: city,
             date: ForecastDate(date: date),
             tempC: temp,
             tempMin: dayWeather.first!.minTemp,
@@ -58,18 +62,21 @@ final class MainScreenModel {
         )
     }
 
-    private func parseDayWeather(_ days: [[String: Any]]) -> [DayWeather] {
+    private func parseDayWeather(_ days: [[String: Any]]) throws -> [DayWeather] {
         var dayWeathers = [DayWeather]()
         for day in days {
-            guard let parts = day[API.DataKeys.Forecasts.Parts.name] as? [String: Any],
-                  let date = day[API.DataKeys.Forecasts.date] as? String,
+            guard let parts = day[WeatherAPI.DataKeys.Forecasts.Parts.name] as? [String: Any],
+                  let date = day[WeatherAPI.DataKeys.Forecasts.date] as? String,
                   let weekDay = Date.getDayOfWeek(from: date),
-                  let dayShort = parts[API.DataKeys.Forecasts.Parts.DayShort.name] as? [String: Any],
-                  let condition = dayShort[API.DataKeys.Forecasts.Parts.DayShort.condition] as? String,
-                  let maxTemp = dayShort[API.DataKeys.Forecasts.Parts.DayShort.temp] as? Int,
-                  let nightShort = parts[API.DataKeys.Forecasts.Parts.NightShort.name] as? [String: Any],
-                  let minTemp = nightShort[API.DataKeys.Forecasts.Parts.NightShort.temp] as? Int,
-                  let weather = Weather(condition, .day) else { return [] }
+                  let dayShort = parts[WeatherAPI.DataKeys.Forecasts.Parts.DayShort.name] as? [String: Any],
+                  let condition = dayShort[WeatherAPI.DataKeys.Forecasts.Parts.DayShort.condition] as? String,
+                  let maxTemp = dayShort[WeatherAPI.DataKeys.Forecasts.Parts.DayShort.temp] as? Int,
+                  let nightShort = parts[WeatherAPI.DataKeys.Forecasts.Parts.NightShort.name] as? [String: Any],
+                  let minTemp = nightShort[WeatherAPI.DataKeys.Forecasts.Parts.NightShort.temp] as? Int,
+                  let weather = Weather(condition, .day)
+            else {
+                throw APIError.dataParse(what: "Error while parsing DayWeather")
+            }
             dayWeathers.append(DayWeather(
                 weekday: weekDay,
                 info: weather,
@@ -80,10 +87,10 @@ final class MainScreenModel {
         return dayWeathers
     }
 
-    private func parseHourWeather(_ days: [[String: Any]], _ currentDate: Date) -> [HourWeather] {
+    private func parseHourWeather(_ days: [[String: Any]], _ currentDate: Date) throws -> [HourWeather] {
         var hourWeathers = [HourWeather]()
         var dayCounter = 0
-        var condition: (Int, SunTimes) -> Bool = { hour, sunTimes  in
+        let condition: (Int, SunTimes) -> Bool = { hour, sunTimes  in
             dayCounter == 0
             ? hour >= sunTimes.startForecastHour
             : hour <= sunTimes.endForecastHour
@@ -91,23 +98,23 @@ final class MainScreenModel {
         
         for _ in 0...1 {
             guard days.count > dayCounter,
-                  let hours = days[dayCounter][API.DataKeys.Forecasts.Hours.name] as? [[String: Any]],
-                  let sunTimes = getSunTimes(currentDate, days[dayCounter])
+                  let hours = days[dayCounter][WeatherAPI.DataKeys.Forecasts.Hours.name] as? [[String: Any]],
+                  let sunTimes = try getSunTimes(currentDate, days[dayCounter])
             else {
-                return []
+                throw APIError.dataParse(what: "Error while parsing HourWeather: getting of hours and sunTimes")
             }
 
             for hour in hours {
-                guard let hourString = hour[API.DataKeys.Forecasts.Hours.hour] as? String,
+                guard let hourString = hour[WeatherAPI.DataKeys.Forecasts.Hours.hour] as? String,
                       let hourValue = Int(hourString) else {
-                    return []
+                    throw APIError.dataParse(what: "Error while parsing hourValue from HourWeather")
                 }
                 if condition(hourValue, sunTimes) {
                     let partOfDay = sunTimes.getPartOfDay(hourValue)
-                    guard let temp = hour[API.DataKeys.Forecasts.Hours.temp] as? Int,
-                          let condition = hour[API.DataKeys.Forecasts.Hours.condition] as? String,
+                    guard let temp = hour[WeatherAPI.DataKeys.Forecasts.Hours.temp] as? Int,
+                          let condition = hour[WeatherAPI.DataKeys.Forecasts.Hours.condition] as? String,
                           let weather = Weather(condition, partOfDay)
-                    else { return [] }
+                    else { throw APIError.dataParse(what: "Error while parsing HourWeather: getting of temp, condition and weather") }
                     hourWeathers.append(HourWeather(time: hourValue, info: weather, temp: temp))
                     if hourWeathers.count == SunTimes.hourForecastCount {
                         return hourWeathers
@@ -119,21 +126,21 @@ final class MainScreenModel {
         return hourWeathers
     }
 
-    private func getSunTimes(_ date: Date, _ dayInfo: [String: Any]) -> SunTimes? {
-        guard let sunrise = dayInfo[API.DataKeys.Forecasts.sunrise] as? String,
-              let sunset = dayInfo[API.DataKeys.Forecasts.setEnd] as? String else {
-            return nil
+    private func getSunTimes(_ date: Date, _ dayInfo: [String: Any]) throws -> SunTimes? {
+        guard let sunrise = dayInfo[WeatherAPI.DataKeys.Forecasts.sunrise] as? String,
+              let sunset = dayInfo[WeatherAPI.DataKeys.Forecasts.setEnd] as? String else {
+            throw APIError.dataParse(what: "Error while parsing SunTimes: sunrise and sunset")
         }
         return SunTimes(currentDate: date, sunrise: sunrise, sunset: sunset)
     }
 
-    private func parseProperties(_ data: [String: Any]) -> [Property] {
-        guard let feelsLike = data[API.DataKeys.Fact.feelsLike] as? Int,
-              let precProb = data[API.DataKeys.Fact.precProb] as? Int,
-              let windSpeed = data[API.DataKeys.Fact.windSpeed] as? Double,
-              let humidity = data[API.DataKeys.Fact.humidity] as? Int,
-              let uvIndex = data[API.DataKeys.Fact.uvIndex] as? Int else {
-            return []
+    private func parseProperties(_ data: [String: Any]) throws -> [Property] {
+        guard let feelsLike = data[WeatherAPI.DataKeys.Fact.feelsLike] as? Int,
+              let precProb = data[WeatherAPI.DataKeys.Fact.precProb] as? Int,
+              let windSpeed = data[WeatherAPI.DataKeys.Fact.windSpeed] as? Double,
+              let humidity = data[WeatherAPI.DataKeys.Fact.humidity] as? Int,
+              let uvIndex = data[WeatherAPI.DataKeys.Fact.uvIndex] as? Int else {
+            throw APIError.dataParse(what: "Error while parsing Properties")
         }
         return [
             Property(info: .avgTemp, value: feelsLike),
@@ -144,10 +151,10 @@ final class MainScreenModel {
         ]
     }
 
-    private func parseDate(_ data: [String: Any]) -> Date? {
-        guard let tzinfo = data[API.DataKeys.Info.TZInfo.name] as? [String: Any],
-              let offset = tzinfo[API.DataKeys.Info.TZInfo.offset] as? Int else {
-            return nil
+    private func parseDate(_ data: [String: Any]) throws -> Date? {
+        guard let tzinfo = data[WeatherAPI.DataKeys.Info.TZInfo.name] as? [String: Any],
+              let offset = tzinfo[WeatherAPI.DataKeys.Info.TZInfo.offset] as? Int else {
+            throw APIError.dataParse(what: "Error while parsing Date: tzindo and offset")
         }
         let currentDate = Date()
         let dateInTimeZone = Calendar.current.date(byAdding: .second, value: offset, to: currentDate)
@@ -191,7 +198,14 @@ final class MainScreenModel {
         
         data = WeatherModel(
             info: .clear(.day),
-            city: "Minsk",
+            city: City(
+                nameEN: "Borisov",
+                nameRU: "Борисов",
+                addInfoEN: "Belarus, Minsk Region",
+                addInfoRU: "Беларусь, Минская область",
+                latitude: 54.2240665,
+                longitude: 28.5117849
+            ),
             date: ForecastDate(date: Date()),
             tempC: Int.random(in: -30...40),
             tempMin: Int.random(in: -30...40),

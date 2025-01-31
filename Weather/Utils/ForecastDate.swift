@@ -15,7 +15,7 @@ struct ForecastDate: Codable {
         R.string.localizable.sat()
     ] }
 
-    static var weekdays : [String] { [
+    static var weekdays: [String] { [
         R.string.localizable.sunday(),
         R.string.localizable.monday(),
         R.string.localizable.tuesday(),
@@ -25,7 +25,7 @@ struct ForecastDate: Codable {
         R.string.localizable.saturday()
     ] }
 
-    static var months : [String] { [
+    static var months: [String] { [
         R.string.localizable.jan(),
         R.string.localizable.feb(),
         R.string.localizable.mar(),

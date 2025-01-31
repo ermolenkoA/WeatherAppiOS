@@ -1,5 +1,5 @@
 import UIKit
 
-enum APIError {
-    case network, dataParse, noData
+enum APIError: Error {
+    case network, noData, dataParse(what: String)
 }

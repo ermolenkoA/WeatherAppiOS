@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "Weather=Clear, Moment=Day.png",
+      "filename" : "Weather=Clear, Moment=Day@2x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Weather=Clear, Moment=Day@2x.png",
+      "filename" : "ClearDay.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

@@ -1,7 +1,6 @@
 import UIKit
 
-struct API {
-
+struct WeatherAPI {
     struct DataKeys {
 
         struct Info {
@@ -71,7 +70,7 @@ struct API {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
-        request.addValue(API.token, forHTTPHeaderField: "X-Yandex-API-Key")
+        request.addValue(WeatherAPI.token, forHTTPHeaderField: "X-Yandex-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
 
         return request
