@@ -5,8 +5,14 @@ final class MainScreenPresenter {
     private weak var view: MainScreenViewController?
     private var model: MainScreenModel?
     private weak var coordinator: AppCoordinator?
-    private var long = 2
-    private var lat = 3
+    let city = City(
+        nameEN: "Borisov",
+        nameRU: "Борисов",
+        addInfoEN: "Belarus, Minsk Region",
+        addInfoRU: "Беларусь, Минская область",
+        latitude: 34.055863,
+        longitude: -118.246139
+    )
 
     init(_ view: MainScreenViewController? = nil,
          _ model: MainScreenModel? = nil,
@@ -21,19 +27,39 @@ final class MainScreenPresenter {
             view?.setWeatherData(data)
         } else {
             view?.activityIndicatorView.startAnimating()
-
             updateMainScreen()
         }
     }
 
     func updateMainScreen() {
-        Task { [weak self] in
-            let data = await self!.model!.getData(long: self!.long, lat: self!.lat)
-            guard let self, let view else { return }
-            await view.setWeatherData(data)
-            Storage.saveWeatherModel(data)
-            await view.refreshControl.endRefreshing()
-            await view.activityIndicatorView.stopAnimating()
+        model?.getData(city) { [weak self, view] error, data in
+
+            if let error {
+                switch error {
+                case .network:
+                    Logger.log(level: .error, instance: self, message: "Network error occurred")
+                case .noData:
+                    Logger.log(level: .error, instance: self, message: "No data received")
+                case .dataParse(what: let what):
+                    Logger.log(level: .error, instance: self, message: "Data parsing: \(what)")
+                }
+            }
+
+            guard let data else {
+                Logger.log(level: .error, instance: self, message: "Unexpected error: data = nil")
+                return
+            }
+            guard let self, let view else {
+                Logger.log(level: .error, instance: self, message: "Unexpected error: self = nil")
+                return
+            }
+
+            DispatchQueue.main.async {
+                view.setWeatherData(data)
+                Storage.saveWeatherModel(data)
+                view.refreshControl.endRefreshing()
+                view.activityIndicatorView.stopAnimating()
+            }
         }
     }
 }

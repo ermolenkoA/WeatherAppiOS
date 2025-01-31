@@ -2,22 +2,25 @@ import UIKit
 
 struct Property: Codable {
     let info: PropertyInfo
-    let value: String
-
-    init(type: PropertyInfo, value: Int) {
-        switch type {
+    private let _value: Int
+    var value: String {
+        return switch info {
         case .avgTemp:
-            self.value = R.string.localizable.temperatureC(value)
+            R.string.localizable.temperatureC(_value)
         case .probability:
-            self.value = R.string.localizable.percent(value)
+            R.string.localizable.percent(_value)
         case .velocity:
-            self.value = R.string.localizable.speed(value)
+            R.string.localizable.speed(_value)
         case .humidity:
-            self.value = R.string.localizable.percent(value)
+            R.string.localizable.percent(_value)
         case .indexUV:
-            self.value = String(value)
+            String(_value)
         }
-        info = type
+    }
+
+    init(info: PropertyInfo, value: Int) {
+        self.info = info
+        self._value = value
     }
 
 }
