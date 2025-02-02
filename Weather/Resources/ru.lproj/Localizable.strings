@@ -46,6 +46,5 @@
 "thunderstorm" = "Гроза";
 "thunderstorm-with-rain" = "Дождь с грозой";
 "thunderstorm-with-hail" = "Гроза с градом";
-
-
-
+"error" = "Ошибка";
+"apiKeyError" = "Невалидный API ключ";

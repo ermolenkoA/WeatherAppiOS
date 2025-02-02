@@ -48,4 +48,5 @@
 "thunderstorm" = "Thunderstorm";
 "thunderstorm-with-rain" = "Thunderstorm with rain";
 "thunderstorm-with-hail" = "Thunderstorm with hail";
-
+"error" = "Error";
+"apiKeyError" = "Invalid API key";

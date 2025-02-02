@@ -1,4 +1,5 @@
 import UIKit
+import RswiftResources
 
 final class MainScreenPresenter {
 
@@ -10,8 +11,8 @@ final class MainScreenPresenter {
         nameRU: "Борисов",
         addInfoEN: "Belarus, Minsk Region",
         addInfoRU: "Беларусь, Минская область",
-        latitude: 34.055863,
-        longitude: -118.246139
+        latitude: 54.2322075,
+        longitude: 28.5146671
     )
 
     init(_ view: MainScreenViewController? = nil,
@@ -34,23 +35,35 @@ final class MainScreenPresenter {
     func updateMainScreen() {
         model?.getData(city) { [weak self, view] error, data in
 
+            guard let view else {
+                Logger.log(level: .error, instance: self, message: "Unexpected error: view = nil")
+                return
+            }
+
             if let error {
+                var message: String = ""
                 switch error {
                 case .network:
-                    Logger.log(level: .error, instance: self, message: "Network error occurred")
+                    message = "Network error occurred"
+                    Logger.log(level: .error, instance: self, message: message)
                 case .noData:
-                    Logger.log(level: .error, instance: self, message: "No data received")
+                    message = "No data received"
+                    Logger.log(level: .error, instance: self, message: message)
                 case .dataParse(what: let what):
-                    Logger.log(level: .error, instance: self, message: "Data parsing: \(what)")
+                    message = what
+                    Logger.log(level: .error, instance: self, message: message)
+                case .badAPIKey:
+                    message = R.string.localizable.apiKeyError()
+                    Logger.log(level: .error, instance: self, message: message)
                 }
+                self?.showError(message)
+                return
             }
 
             guard let data else {
-                Logger.log(level: .error, instance: self, message: "Unexpected error: data = nil")
-                return
-            }
-            guard let self, let view else {
-                Logger.log(level: .error, instance: self, message: "Unexpected error: self = nil")
+                let error = "Unexpected error: data = nil"
+                Logger.log(level: .error, instance: self, message: error)
+                self?.showError(error)
                 return
             }
 
@@ -60,6 +73,23 @@ final class MainScreenPresenter {
                 view.refreshControl.endRefreshing()
                 view.activityIndicatorView.stopAnimating()
             }
+        }
+    }
+
+    func showError(_ message: String) {
+        let alertController = UIAlertController(
+            title: R.string.localizable.error(),
+            message: message,
+            preferredStyle: .alert
+        )
+        alertController.addAction(.init(
+            title: "OK",
+            style: .default) { [weak self] _ in
+                self?.view?.refreshControl.endRefreshing()
+            }
+        )
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.present(alertController, animated: true)
         }
     }
 }

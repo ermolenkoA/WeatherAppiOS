@@ -11,10 +11,18 @@ final class MainScreenModel {
         let request = WeatherAPI.createRequest(lat: city.latitude, lon: city.longitude)
 
         let session = URLSession.shared
-        session.dataTask(with: request) { [weak self] data, _, error in
-            if let error {
+        session.dataTask(with: request) { [weak self] data, response, error in
+            if error != nil {
                 completion(.network, nil)
                 return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                let statusCode = httpResponse.statusCode
+                if statusCode == 403 {
+                    completion(.badAPIKey, nil)
+                    return
+                }
             }
 
             if let data, let JSONObject = try? JSONSerialization.jsonObject(
@@ -24,6 +32,7 @@ final class MainScreenModel {
                     completion(nil, model)
                 } catch let error as APIError {
                     completion(error, nil)
+                    return
                 } catch {
                     let wrappedError = APIError.dataParse(what: "Unexpected error: \(error.localizedDescription)")
                     completion(wrappedError, nil)
@@ -48,14 +57,16 @@ final class MainScreenModel {
         let properties = try parseProperties(fact)
         let hourWeather = try parseHourWeather(forecasts, date)
         let dayWeather = try parseDayWeather(forecasts)
+        let tempMin = dayWeather.first!.minTemp
+        let tempMax = dayWeather.first!.maxTemp
 
         return WeatherModel(
             info: weather,
             city: city,
             date: ForecastDate(date: date),
             tempC: temp,
-            tempMin: dayWeather.first!.minTemp,
-            tempMax: dayWeather.first!.maxTemp,
+            tempMin: min(tempMin, tempMax),
+            tempMax: max(tempMin, tempMax),
             properties: properties,
             hourWeather: hourWeather,
             dailyweather: dayWeather
@@ -114,7 +125,9 @@ final class MainScreenModel {
                     guard let temp = hour[WeatherAPI.DataKeys.Forecasts.Hours.temp] as? Int,
                           let condition = hour[WeatherAPI.DataKeys.Forecasts.Hours.condition] as? String,
                           let weather = Weather(condition, partOfDay)
-                    else { throw APIError.dataParse(what: "Error while parsing HourWeather: getting of temp, condition and weather") }
+                    else { throw APIError.dataParse(
+                        what: "Error while parsing HourWeather: getting of temp, condition and weather"
+                    ) }
                     hourWeathers.append(HourWeather(time: hourValue, info: weather, temp: temp))
                     if hourWeathers.count == SunTimes.hourForecastCount {
                         return hourWeathers

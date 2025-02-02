@@ -44,7 +44,6 @@ final class MainScreenViewController: UIViewController {
 
     private lazy var weatherView: WeatherView = {
         let view = WeatherView()
-        view.image = R.image.weatherClearMomentNight()
         view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
