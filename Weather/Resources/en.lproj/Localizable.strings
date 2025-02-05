@@ -50,3 +50,6 @@
 "thunderstorm-with-hail" = "Thunderstorm with hail";
 "error" = "Error";
 "apiKeyError" = "Invalid API key";
+"enterCity" = "Search for a location..";
+"header" = "Welcome to ForecastX";
+"showForecast" = "Show forecast";

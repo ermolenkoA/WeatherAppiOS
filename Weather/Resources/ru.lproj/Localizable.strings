@@ -48,3 +48,6 @@
 "thunderstorm-with-hail" = "Гроза с градом";
 "error" = "Ошибка";
 "apiKeyError" = "Невалидный API ключ";
+"enterCity" = "Поиск местоположения...";
+"header" = "Добро пожаловать ForecastX";
+"showForecast" = "Показать прогноз";

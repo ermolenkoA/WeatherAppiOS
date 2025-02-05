@@ -8,9 +8,9 @@ final class AppCoordinator {
     }
 
     func showMainScreen() {
-        let view = MainScreenViewController()
-        let model = MainScreenModel()
-        let presenter = MainScreenPresenter(view, model, self)
+        let view = CityChoiceViewController()
+        let model = CityChoiceModel()
+        let presenter = CityChoicePresenter()
         view.presenter = presenter
         model.presenter = presenter
         window?.rootViewController = view
