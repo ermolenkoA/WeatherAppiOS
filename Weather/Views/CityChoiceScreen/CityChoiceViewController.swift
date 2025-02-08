@@ -4,6 +4,18 @@ import SnapKit
 
 final class CityChoiceViewController: UIViewController {
 
+    enum Constants {
+        static let textFieldHeight: CGFloat = 50
+        static let textFieldTopHeight: CGFloat = 40
+        static let textFieldCenter: CGFloat = 15
+    }
+
+    var isKeyboardVisible = false
+    var textFieldHeightConstraint: Constraint?
+    var topInset: CGFloat {
+        -(inputLocation.frame.origin.y - view.safeAreaInsets.top)
+    }
+    
     var presenter: CityChoicePresenter?
 
     lazy var headerLabel: UILabel = {
@@ -39,17 +51,18 @@ final class CityChoiceViewController: UIViewController {
     lazy var inputLocation: UITextField = {
         let textInput = UITextField()
         textInput.backgroundColor = R.color.gray600()
-        textInput.layer.cornerRadius = 15
-        textInput.textColor = R.color.gray300()
+        textInput.layer.cornerRadius = Constants.textFieldHeight * 0.3
+        textInput.textColor = R.color.gray100()
         textInput.font = R.font.nunitoRegular(size: 20)
         textInput.attributedPlaceholder = NSAttributedString(
             string: R.string.localizable.enterCity(),
-            attributes: [NSAttributedString.Key.foregroundColor: R.color.gray300()!]
+            attributes: [NSAttributedString.Key.foregroundColor: R.color.gray400()!]
         )
 
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 20))
         textInput.leftView = leftPaddingView
         textInput.leftViewMode = .always
+        textInput.clearButtonMode = .whileEditing
         return textInput
     }()
 
@@ -79,23 +92,37 @@ final class CityChoiceViewController: UIViewController {
 
     lazy var savedCitiesTableView: SavedCitiesTableView = {
         let tableView = SavedCitiesTableView()
-        tableView.layer.cornerRadius = 15
-        tableView.layer.masksToBounds = true
-        tableView.clipsToBounds = true
         tableView.allowsSelection = false
         tableView.separatorColor = R.color.gray500()
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         return tableView
     }()
 
-    private func setData() {
+    lazy var searchCitiesTableView: SearchTableView = {
+        let tableView = SearchTableView()
+        tableView.allowsSelection = false
+        tableView.separatorColor = R.color.gray500()
+        tableView.layer.opacity = 0
+        return tableView
+    }()
 
+    private func setData() {
+    
+    }
+
+    func setSearchCities(_ cities: [City]) {
+        searchCitiesTableView.setData(data: cities)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.color.gray900()
         makeConstraints()
+        inputLocation.delegate = self
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 
     private func makeConstraints() {
@@ -103,14 +130,16 @@ final class CityChoiceViewController: UIViewController {
         view.addSubview(inputLocation)
         view.addSubview(showForecastButton)
         view.addSubview(savedCitiesTableView)
+        view.addSubview(searchCitiesTableView)
 
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         inputLocation.translatesAutoresizingMaskIntoConstraints = false
         showForecastButton.translatesAutoresizingMaskIntoConstraints = false
         savedCitiesTableView.translatesAutoresizingMaskIntoConstraints = false
+        searchCitiesTableView.translatesAutoresizingMaskIntoConstraints = false
 
         headerLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(230)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(view.frame.height * 0.3)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.85)
         }
@@ -119,20 +148,36 @@ final class CityChoiceViewController: UIViewController {
             make.top.equalTo(headerLabel.snp.bottom).offset(15)
             make.centerX.equalToSuperview()
             make.width.equalTo(headerLabel)
-            make.height.equalTo(50)
+            textFieldHeightConstraint =
+            make.height.equalTo(Constants.textFieldHeight).constraint
         }
 
         showForecastButton.snp.makeConstraints { make in
-            make.top.equalTo(inputLocation.snp.bottom).offset(180)
+            make.bottom.equalToSuperview().inset(50)
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.7)
             make.height.equalTo(40)
         }
 
         savedCitiesTableView.snp.makeConstraints { make in
-            make.top.equalTo(showForecastButton.snp.bottom).offset(20)
+            make.bottom.equalTo(showForecastButton.snp.top).offset(-50)
             make.leading.trailing.equalToSuperview().inset(30)
             make.height.equalTo(150)
         }
+
+        searchCitiesTableView.snp.makeConstraints { make in
+            make.width.equalTo(inputLocation)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(Constants.textFieldTopHeight)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(200)
+        }
+    }
+}
+
+extension CityChoiceViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+        presenter?.textChanged(newText)
+        return true
     }
 }

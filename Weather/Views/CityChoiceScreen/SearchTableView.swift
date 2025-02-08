@@ -1,10 +1,13 @@
 import UIKit
 
-final class SavedCitiesTableView: UITableView {
+class SearchTableView: UITableView {
+
     private var data: [City]
 
     init() {
+
         data = []
+
         super.init(frame: .zero, style: .plain)
         setupTableView()
     }
@@ -15,21 +18,12 @@ final class SavedCitiesTableView: UITableView {
         setupTableView()
     }
 
-    override func reloadData() {
-        super.reloadData()
-        if data.count <= 3 && !data.isEmpty {
-            isScrollEnabled = false
-            contentInset = UIEdgeInsets(top: CGFloat((3 - data.count) * 50), left: 0, bottom: 0, right: 0)
-        } else {
-            isScrollEnabled = true
-            contentInset = .zero
-        }
-    }
-
     private func setupTableView() {
         dataSource = self
         delegate = self
-        register(SavedCitiesTableViewCell.self, forCellReuseIdentifier: SavedCitiesTableViewCell.identifier)
+        register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        rowHeight = UITableView.automaticDimension
+        estimatedRowHeight = 50
         backgroundColor = .clear
     }
 
@@ -41,7 +35,7 @@ final class SavedCitiesTableView: UITableView {
 
 // MARK: - UITableViewDataSource
 
-extension SavedCitiesTableView: UITableViewDataSource {
+extension SearchTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
@@ -49,9 +43,9 @@ extension SavedCitiesTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView
             .dequeueReusableCell(
-                withIdentifier: SavedCitiesTableViewCell.identifier,
+                withIdentifier: SearchTableViewCell.identifier,
                 for: indexPath
-            ) as? SavedCitiesTableViewCell else { return UITableViewCell() }
+            ) as? SearchTableViewCell else { return UITableViewCell() }
 
         if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 {
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: frame.width)
@@ -67,8 +61,8 @@ extension SavedCitiesTableView: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension SavedCitiesTableView: UITableViewDelegate {
+extension SearchTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 50 // Высота строки
     }
 }

@@ -7,10 +7,24 @@ final class AppCoordinator {
         self.window = window
     }
 
+    func start() {
+        showCityChoiceScreen()
+    }
+
     func showMainScreen() {
+        let view = MainScreenViewController()
+        let model = MainScreenModel()
+        let presenter = MainScreenPresenter(view, model, self)
+        view.presenter = presenter
+        model.presenter = presenter
+        window?.rootViewController = view
+        window?.makeKeyAndVisible()
+    }
+
+    func showCityChoiceScreen() {
         let view = CityChoiceViewController()
         let model = CityChoiceModel()
-        let presenter = CityChoicePresenter()
+        let presenter = CityChoicePresenter(view, model, self)
         view.presenter = presenter
         model.presenter = presenter
         window?.rootViewController = view

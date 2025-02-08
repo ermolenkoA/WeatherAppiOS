@@ -1,8 +1,8 @@
 import UIKit
 
 struct City: Codable {
-    private let nameEN: String
-    private let nameRU: String
+    let nameEN: String
+    let nameRU: String
     private let addInfoEN: String
     private let addInfoRU: String
     let latitude: Double

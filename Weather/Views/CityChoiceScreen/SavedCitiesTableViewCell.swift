@@ -6,7 +6,7 @@ final class SavedCitiesTableViewCell: UITableViewCell {
     private lazy var cityLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = R.font.nunitoBold(size: 16)
+        label.font = R.font.nunitoSemiBold(size: 18)
         label.textColor = R.color.gray100()
         return label
     }()
@@ -14,6 +14,7 @@ final class SavedCitiesTableViewCell: UITableViewCell {
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
+        imageView.image = R.image.historyTime()
         return imageView
     }()
 
@@ -33,22 +34,21 @@ final class SavedCitiesTableViewCell: UITableViewCell {
 
         iconImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(7)
-            make.height.equalToSuperview().multipliedBy(0.5)
+            make.leading.equalToSuperview().offset(12)
+            make.height.equalToSuperview().multipliedBy(0.35)
             make.width.equalTo(iconImageView.snp.height)
         }
 
         cityLabel.snp.makeConstraints { make in
-            make.leading.equalTo(iconImageView.snp.trailing).offset(7)
+            make.leading.equalTo(iconImageView.snp.trailing).offset(12)
             make.centerY.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.55)
             make.height.equalToSuperview().offset(-16)
         }
     }
 
-    func configure(with data: SavedCities) {
-        cityLabel.text = data.city
-        iconImageView.image = R.image.clearDayIcon()
+    func configure(with data: City) {
+        cityLabel.text = data.name
     }
 }
  

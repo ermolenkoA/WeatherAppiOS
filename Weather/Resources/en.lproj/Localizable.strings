@@ -53,3 +53,4 @@
 "enterCity" = "Search for a location..";
 "header" = "Welcome to ForecastX";
 "showForecast" = "Show forecast";
+"cancel" = "Cancel";
