@@ -9,12 +9,13 @@ final class CityChoiceViewController: UIViewController {
         static let textFieldCenter: CGFloat = 15
     }
 
+    var presenter: CityChoicePresenter?
+
     var isKeyboardVisible = false
     var textFieldHeightConstraint: Constraint?
     var topInset: CGFloat {
         -(inputLocation.frame.origin.y - view.safeAreaInsets.top)
     }
-
     var dataFound: Bool {
         get {
             searchCitiesTableView.dataFound
@@ -23,8 +24,6 @@ final class CityChoiceViewController: UIViewController {
             searchCitiesTableView.dataFound = newValue
         }
     }
-
-    var presenter: CityChoicePresenter?
 
     lazy var headerLabel: UILabel = {
         let label = UILabel()
@@ -57,21 +56,26 @@ final class CityChoiceViewController: UIViewController {
     }()
 
     lazy var inputLocation: UITextField = {
-        let textInput = UITextField()
-        textInput.backgroundColor = R.color.gray600()
-        textInput.layer.cornerRadius = Constants.textFieldHeight * 0.3
-        textInput.textColor = R.color.gray100()
-        textInput.font = R.font.nunitoRegular(size: 20)
-        textInput.attributedPlaceholder = NSAttributedString(
+        let textField = UITextField()
+        textField.backgroundColor = R.color.gray600()
+        textField.layer.cornerRadius = Constants.textFieldHeight * 0.3
+        textField.textColor = R.color.gray100()
+        textField.font = R.font.nunitoRegular(size: 20)
+        textField.attributedPlaceholder = NSAttributedString(
             string: R.string.localizable.enterCity(),
             attributes: [NSAttributedString.Key.foregroundColor: R.color.gray400()!]
         )
 
+        textField.autocapitalizationType = .words
+        textField.autocorrectionType = .no
+        textField.spellCheckingType = .no
+        textField.returnKeyType = .go
+
         let leftPaddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 20))
-        textInput.leftView = leftPaddingView
-        textInput.leftViewMode = .always
-        textInput.clearButtonMode = .whileEditing
-        return textInput
+        textField.leftView = leftPaddingView
+        textField.leftViewMode = .always
+        textField.clearButtonMode = .whileEditing
+        return textField
     }()
 
     lazy var showForecastButton: UIButton = {
@@ -122,6 +126,11 @@ final class CityChoiceViewController: UIViewController {
         makeConstraints()
         inputLocation.delegate = self
         setupTapGesture()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.updateNavBar()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -209,20 +218,29 @@ final class CityChoiceViewController: UIViewController {
 }
 
 extension CityChoiceViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        guard let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string),
+              newText.matches(regex: "^[A-Za-zА-Яа-яЁё\\- ]*$") else {
             return false
         }
-        showForecastButton.isHidden = true
+
         presenter?.textChanged(newText)
         return true
     }
 
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        showForecastButton.isHidden = true
         DispatchQueue.main.async {
             self.presenter?.textFieldClear()
         }
+        return true
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }

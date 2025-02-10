@@ -107,9 +107,12 @@ final class CityChoicePresenter {
 
     func showForecast() {
         guard let savedCity else { return }
-        coordinator?.showMainScreen(for: savedCity)
+        coordinator?.pushMainScreen(city: savedCity)
     }
 
+    func updateNavBar() {
+        coordinator?.updateNavBar()
+    }
 }
 
 extension CityChoicePresenter: SearchTableViewDelegate {

@@ -28,6 +28,10 @@ final class MainScreenPresenter {
         }
     }
 
+    func updateNavBar() {
+        coordinator?.updateNavBar()
+    }
+
     func updateMainScreen() {
         model?.getData(city) { [weak self, view] error, data in
 

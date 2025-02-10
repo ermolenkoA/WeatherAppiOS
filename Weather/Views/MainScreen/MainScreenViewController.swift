@@ -87,9 +87,10 @@ final class MainScreenViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        presenter?.updateNavBar()
         presenter?.prepareView()
     }
-
+    
     func setWeatherData(_ data: WeatherModel) {
         weatherView.setData(data)
         hourWeatherCollectionView.setData(data: data.hourWeather)
