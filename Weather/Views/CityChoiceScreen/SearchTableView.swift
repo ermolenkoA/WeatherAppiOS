@@ -1,21 +1,58 @@
 import UIKit
+import SnapKit
 
-class SearchTableView: UITableView {
+final class SearchTableView: UITableView {
 
     private var data: [City]
 
+    private var dataCount: Int {
+        dataFound ? data.count : 1
+    }
+
+    weak var searchDelegate: SearchTableViewDelegate?
+
+    var dataFound: Bool = true
+
+    lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.backgroundColor = R.color.gray900()
+        activityIndicator.style = .medium
+        activityIndicator.color = .white
+        return activityIndicator
+    }()
+
     init() {
-
         data = []
-
         super.init(frame: .zero, style: .plain)
         setupTableView()
+        makeConstraints()
     }
 
     required init?(coder: NSCoder) {
         data = []
         super.init(coder: coder)
         setupTableView()
+        makeConstraints()
+    }
+
+    func setData(data: [City]) {
+        self.data = data
+        reloadData()
+    }
+
+    func startSearching() {
+        activityIndicatorView.startAnimating()
+    }
+
+    func endsearching() {
+        activityIndicatorView.stopAnimating()
+    }
+
+    func clearData() {
+        data.removeAll()
+        dataFound = true
+        activityIndicatorView.stopAnimating()
+        reloadData()
     }
 
     private func setupTableView() {
@@ -25,11 +62,18 @@ class SearchTableView: UITableView {
         rowHeight = UITableView.automaticDimension
         estimatedRowHeight = 50
         backgroundColor = .clear
+        allowsSelection = false
     }
 
-    func setData(data: [City]) {
-        self.data = data
-        reloadData()
+    private func makeConstraints() {
+        addSubview(activityIndicatorView)
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+
+        activityIndicatorView.snp.makeConstraints { make in
+            make.top.trailing.leading.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.height.equalTo(snp.height).multipliedBy(0.3)
+        }
     }
 }
 
@@ -37,7 +81,7 @@ class SearchTableView: UITableView {
 
 extension SearchTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return dataCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,8 +97,16 @@ extension SearchTableView: UITableViewDataSource {
             cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         }
 
-        let cellData = data[indexPath.row]
-        cell.configure(with: cellData)
+        if !dataFound {
+            cell.configureEmpty()
+            cell.isAnimationEnabled = false
+        } else {
+            let cellData = data[indexPath.row]
+            cell.configure(with: cellData)
+            cell.isAnimationEnabled = true
+            cell.delegate = searchDelegate
+        }
+        
         return cell
     }
 }
@@ -63,6 +115,6 @@ extension SearchTableView: UITableViewDataSource {
 
 extension SearchTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50 // Высота строки
+        return 60
     }
 }

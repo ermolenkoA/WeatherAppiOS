@@ -6,21 +6,17 @@ final class MainScreenPresenter {
     private weak var view: MainScreenViewController?
     private var model: MainScreenModel?
     private weak var coordinator: AppCoordinator?
-    let city = City(
-        nameEN: "Borisov",
-        nameRU: "Борисов",
-        addInfoEN: "Belarus, Minsk Region",
-        addInfoRU: "Беларусь, Минская область",
-        latitude: 54.2322075,
-        longitude: 28.5146671
-    )
+
+    let city: City
 
     init(_ view: MainScreenViewController? = nil,
          _ model: MainScreenModel? = nil,
-         _ coordinator: AppCoordinator? = nil) {
+         _ coordinator: AppCoordinator? = nil,
+         _ city: City) {
         self.view = view
         self.model = model
         self.coordinator = coordinator
+        self.city = city
     }
 
     func prepareView() {

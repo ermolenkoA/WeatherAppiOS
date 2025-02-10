@@ -54,3 +54,4 @@
 "header" = "Welcome to ForecastX";
 "showForecast" = "Show forecast";
 "cancel" = "Cancel";
+"notFound" = "Not found";

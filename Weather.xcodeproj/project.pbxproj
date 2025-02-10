@@ -51,6 +51,7 @@
 		44EC76F52CB6F0BD0023B313 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EC76F42CB6F0BD0023B313 /* MainScreenViewController.swift */; };
 		44EC76FA2CB6F0BD0023B313 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44EC76F92CB6F0BD0023B313 /* Assets.xcassets */; };
 		44EC76FD2CB6F0BD0023B313 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 44EC76FC2CB6F0BD0023B313 /* Base */; };
+		44F13B202D5A73920047CC63 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F13B1F2D5A73880047CC63 /* String+extension.swift */; };
 		44F59B852CBAF91D00D09871 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F59B842CBAF91D00D09871 /* AppCoordinator.swift */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +103,7 @@
 		44EC76F42CB6F0BD0023B313 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		44EC76F92CB6F0BD0023B313 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44EC76FC2CB6F0BD0023B313 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		44F13B1F2D5A73880047CC63 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		44F59B842CBAF91D00D09871 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +215,7 @@
 		4474A5C22D4A59A800D4BD62 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				44F13B1F2D5A73880047CC63 /* String+extension.swift */,
 				44919A8F2D54082400D9F607 /* Image+extension.swift */,
 				4474A5C72D4BE10B00D4BD62 /* Date+extension.swift */,
 			);
@@ -385,6 +388,7 @@
 				44CD0B492D4D1723007B52CE /* Logger.swift in Sources */,
 				44BA8C512D356C5100ECE15C /* PropertiesWeatherTableView.swift in Sources */,
 				44EC76F52CB6F0BD0023B313 /* MainScreenViewController.swift in Sources */,
+				44F13B202D5A73920047CC63 /* String+extension.swift in Sources */,
 				44D764F32D36AC7800BD6C07 /* DayWeatherCollectionViewCell.swift in Sources */,
 				447E640C2D56B60C0030C72B /* SearchTableViewCell.swift in Sources */,
 				44919A5F2D53C4DA00D9F607 /* SavedCitiesTableViewCell.swift in Sources */,

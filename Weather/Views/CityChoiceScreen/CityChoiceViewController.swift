@@ -3,7 +3,6 @@ import RswiftResources
 import SnapKit
 
 final class CityChoiceViewController: UIViewController {
-
     enum Constants {
         static let textFieldHeight: CGFloat = 50
         static let textFieldTopHeight: CGFloat = 40
@@ -15,7 +14,16 @@ final class CityChoiceViewController: UIViewController {
     var topInset: CGFloat {
         -(inputLocation.frame.origin.y - view.safeAreaInsets.top)
     }
-    
+
+    var dataFound: Bool {
+        get {
+            searchCitiesTableView.dataFound
+        }
+        set {
+            searchCitiesTableView.dataFound = newValue
+        }
+    }
+
     var presenter: CityChoicePresenter?
 
     lazy var headerLabel: UILabel = {
@@ -87,6 +95,8 @@ final class CityChoiceViewController: UIViewController {
 
         let button = UIButton()
         button.configuration = config
+        button.isHidden = true
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
 
@@ -106,23 +116,47 @@ final class CityChoiceViewController: UIViewController {
         return tableView
     }()
 
-    private func setData() {
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = R.color.gray900()
+        makeConstraints()
+        inputLocation.delegate = self
+        setupTapGesture()
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
 
     func setSearchCities(_ cities: [City]) {
         searchCitiesTableView.setData(data: cities)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = R.color.gray900()
-        makeConstraints()
-        inputLocation.delegate = self
+    func startSearching() {
+        searchCitiesTableView.clearData()
+        searchCitiesTableView.startSearching()
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    func endSearching() {
+        searchCitiesTableView.endsearching()
+    }
+
+    func clearSearchTableView() {
+        searchCitiesTableView.clearData()
+    }
+
+    private func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        searchCitiesTableView.addGestureRecognizer(tapGesture)
+    }
+
+    @objc private func dismissKeyboard() {
         view.endEditing(true)
+    }
+
+    @objc private func buttonTapped() {
+        presenter?.showForecast()
     }
 
     private func makeConstraints() {
@@ -169,15 +203,26 @@ final class CityChoiceViewController: UIViewController {
             make.width.equalTo(inputLocation)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(Constants.textFieldTopHeight)
             make.centerX.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(250)
         }
     }
 }
 
 extension CityChoiceViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+        guard let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) else {
+            return false
+        }
+        showForecastButton.isHidden = true
         presenter?.textChanged(newText)
+        return true
+    }
+
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        showForecastButton.isHidden = true
+        DispatchQueue.main.async {
+            self.presenter?.textFieldClear()
+        }
         return true
     }
 }
