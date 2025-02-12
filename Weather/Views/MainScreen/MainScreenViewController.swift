@@ -44,7 +44,6 @@ final class MainScreenViewController: UIViewController {
 
     private lazy var weatherView: WeatherView = {
         let view = WeatherView()
-        view.image = R.image.weatherClearMomentNight()
         view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
@@ -88,9 +87,10 @@ final class MainScreenViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        presenter?.updateNavBar()
         presenter?.prepareView()
     }
-
+    
     func setWeatherData(_ data: WeatherModel) {
         weatherView.setData(data)
         hourWeatherCollectionView.setData(data: data.hourWeather)

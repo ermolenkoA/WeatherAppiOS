@@ -45,7 +45,6 @@ struct WeatherAPI {
                 static let hour = "hour"
                 static let condition = "condition"
                 static let temp = "temp"
-
             }
         }
     }

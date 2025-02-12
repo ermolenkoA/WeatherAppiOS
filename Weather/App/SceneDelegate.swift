@@ -11,7 +11,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         appCoordinator = AppCoordinator(window: UIWindow(windowScene: windowScene))
-        appCoordinator?.showMainScreen()
+        appCoordinator?.start()
 
     }
 }

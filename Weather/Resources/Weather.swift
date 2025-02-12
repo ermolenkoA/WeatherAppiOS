@@ -28,68 +28,137 @@ enum Weather: Codable {
         switch self {
         case .clear(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherClearMomentDayIcon()
-            : R.image.weatherClearMomentNightIcon()
+            ? R.image.clearDayIcon()
+            : R.image.clearNightIcon()
         case .partlyCloudy(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherFewCloudsMomentDayIcon()
-            : R.image.weatherFewCloudsMomentNightIcon()
+            ? R.image.fewCloudsDayIcon()
+            : R.image.fewCloudsNightIcon()
         case .cloudy(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherFewCloudsMomentDayIcon()
-            : R.image.weatherFewCloudsMomentNightIcon()
+            ? R.image.cloudyDayIcon()
+            : R.image.cloudyNightIcon()
         case .overcast(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherCloudyMomentDayIcon()
-            : R.image.weatherCloudyMomentNightIcon()
+            ? R.image.fewCloudsDayIcon()
+            : R.image.fewCloudsNightIcon()
         case .lightRain(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherRainMomentDayIcon()
-            : R.image.weatherRainMomentNightIcon()
+            ? R.image.lightRainDayIcon()
+            : R.image.lightRainNightIcon()
         case .rain(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherRainMomentDayIcon()
-            : R.image.weatherRainMomentNightIcon()
+            ? R.image.rainDayIcon()
+            : R.image.rainNightIcon()
         case .heavyRain(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherRainMomentDayIcon()
-            : R.image.weatherRainMomentNightIcon()
+            ? R.image.heavyRainDayIcon()
+            : R.image.heavyRainNightIcon()
         case .showers(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherRainMomentDayIcon()
-            : R.image.weatherRainMomentNightIcon()
+            ? R.image.heavyRainDayIcon()
+            : R.image.heavyRainNightIcon()
         case .wetSnow(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherFreezingRain()
-            : R.image.weatherFreezingRain()
+            ? R.image.wetSnowDayIcon()
+            : R.image.wetSnowNightIcon()
         case .lightSnow(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherSnow()
-            : R.image.weatherSnow()
+            ? R.image.lightSnowDayIcon()
+            : R.image.lightSnowNightIcon()
         case .snow(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherSnow()
-            : R.image.weatherSnow()
+            ? R.image.snowIcon()
+            : R.image.snowIcon()
         case .snowShowers(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherSnow()
-            : R.image.weatherSnow()
+            ? R.image.snowShowersDayIcon()
+            : R.image.snowShowersNightIcon()
         case .hail(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherRainMomentDayIcon()
-            : R.image.weatherRainMomentNightIcon()
+            ? R.image.hailDayIcon()
+            : R.image.hailNightIcon()
         case .thunderstorm(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherStormMomentDayIcon()
-            : R.image.weatherStormMomentNightIcon()
+            ? R.image.stormDayIcon()
+            : R.image.stormNightIcon()
         case .thunderstormWithRain(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherStormMomentDayIcon()
-            : R.image.weatherRainMomentNightIcon()
+            ? R.image.stormDayIcon()
+            : R.image.stormNightIcon()
         case .thunderstormWithHail(let partOfDay):
             return partOfDay == .day
-            ? R.image.weatherStormMomentDayIcon()
-            : R.image.weatherRainMomentNightIcon()
+            ? R.image.stormDayIcon()
+            : R.image.stormNightIcon()
+        }
+    }
+
+    func mainIcon() -> UIImage? {
+        switch self {
+        case .clear(let partOfDay):
+            return partOfDay == .day
+            ? R.image.clearDay()
+            : R.image.clearNight()
+        case .partlyCloudy(let partOfDay):
+            return partOfDay == .day
+            ? R.image.fewCloudsDay()
+            : R.image.fewCloudsNight()
+        case .cloudy(let partOfDay):
+            return partOfDay == .day
+            ? R.image.cloudyDay()
+            : R.image.cloudyNight()
+        case .overcast(let partOfDay):
+            return partOfDay == .day
+            ? R.image.fewCloudsDay()
+            : R.image.fewCloudsNight()
+        case .lightRain(let partOfDay):
+            return partOfDay == .day
+            ? R.image.lightRainDay()
+            : R.image.lightRainNight()
+        case .rain(let partOfDay):
+            return partOfDay == .day
+            ? R.image.rainDay()
+            : R.image.rainNight()
+        case .heavyRain(let partOfDay):
+            return partOfDay == .day
+            ? R.image.heavyRainDay()
+            : R.image.heavyRainNight()
+        case .showers(let partOfDay):
+            return partOfDay == .day
+            ? R.image.heavyRainDay()
+            : R.image.heavyRainNight()
+        case .wetSnow(let partOfDay):
+            return partOfDay == .day
+            ? R.image.wetSnowDay()
+            : R.image.wetSnowNight()
+        case .lightSnow(let partOfDay):
+            return partOfDay == .day
+            ? R.image.lightSnowDay()
+            : R.image.lightSnowNight()
+        case .snow(let partOfDay):
+            return partOfDay == .day
+            ? R.image.snow()
+            : R.image.snow()
+        case .snowShowers(let partOfDay):
+            return partOfDay == .day
+            ? R.image.snowShowersDay()
+            : R.image.snowShowersNight()
+        case .hail(let partOfDay):
+            return partOfDay == .day
+            ? R.image.hailDay()
+            : R.image.hailNight()
+        case .thunderstorm(let partOfDay):
+            return partOfDay == .day
+            ? R.image.stormDay()
+            : R.image.stormNight()
+        case .thunderstormWithRain(let partOfDay):
+            return partOfDay == .day
+            ? R.image.stormDay()
+            : R.image.stormNight()
+        case .thunderstormWithHail(let partOfDay):
+            return partOfDay == .day
+            ? R.image.stormDay()
+            : R.image.stormNight()
         }
     }
 

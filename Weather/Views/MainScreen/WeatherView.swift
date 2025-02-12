@@ -60,11 +60,11 @@ final class WeatherView: UIImageView {
         cityLabel.text = data.city.name
         dateLabel.text = data.date.fullForecastDate
         temperatureLabel.text = R.string.localizable.temperatureC(data.tempC)
-        dayTemperatureLabel.text = R.string.localizable.temperatureC(data.tempMin)
+        dayTemperatureLabel.text = R.string.localizable.temperatureC(data.tempMax)
             + "/"
-            + R.string.localizable.temperatureC(data.tempMax)
+            + R.string.localizable.temperatureC(data.tempMin)
         descriptionLabel.text = data.info.description()
-        weatherImageView.image = data.info.icon()
+        weatherImageView.image = data.info.mainIcon()
         image = data.info.background()
     }
 
@@ -115,7 +115,7 @@ final class WeatherView: UIImageView {
         weatherImageView.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.5)
+            make.width.equalToSuperview().multipliedBy(0.55)
             make.height.equalTo(weatherImageView.snp.width)
         }
     }

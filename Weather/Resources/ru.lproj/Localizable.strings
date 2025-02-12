@@ -46,6 +46,10 @@
 "thunderstorm" = "Гроза";
 "thunderstorm-with-rain" = "Дождь с грозой";
 "thunderstorm-with-hail" = "Гроза с градом";
-
-
-
+"error" = "Ошибка";
+"apiKeyError" = "Невалидный API ключ";
+"enterCity" = "Поиск местоположения...";
+"header" = "Добро пожаловать ForecastX";
+"showForecast" = "Показать прогноз";
+"cancel" = "Отмена";
+"notFound" = "Ничего не найдено";
