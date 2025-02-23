@@ -2,16 +2,22 @@ import UIKit
 import RswiftResources
 
 final class AppCoordinator {
+    var isFirstScreen: Bool { navC.viewControllers.count == 1 }
+
     private var window: UIWindow?
-    private var navC = UINavigationController()
+    private var navC = SwipeNavigationController()
 
     init(window: UIWindow? = nil) {
         self.window = window
     }
 
     func start() {
-        pushScreen(createCityChoiceScreen())
-        window?.rootViewController = navC
+        if let weather = Storage.loadWeatherModel() {
+            pushScreen(createMainScreen(for: weather))
+        } else {
+            pushScreen(createCityChoiceScreen())
+        }
+        makeNavCRoot()
         window?.makeKeyAndVisible()
     }
 
@@ -27,13 +33,21 @@ final class AppCoordinator {
         pushScreen(createMainScreen(for: city))
     }
 
+    func createNavC(root: UIViewController) {
+        navC = SwipeNavigationController(rootViewController: root)
+        makeNavCRoot()
+    }
+
+    func managePlusButton(vc: MainScreenViewController) {
+        if navC.viewControllers.count > 1 {
+            createPlusButton(for: vc)
+        }
+    }
+
     private func pushScreen(_ vc: UIViewController) {
         navC.isNavigationBarHidden = false
         if !navC.viewControllers.isEmpty {
             createBackButton(for: vc)
-            if let mainVC = vc as? MainScreenViewController {
-                createPlusButton(for: mainVC)
-            }
         }
 
         navC.pushViewController(vc, animated: true)
@@ -67,16 +81,30 @@ final class AppCoordinator {
 
     @objc private func backButtonTapped() {
         navC.popViewController(animated: true)
+        updateNavBar()
     }
 
     @objc private func plusButtonTapped() {
-        print("➕ Кнопка '+' нажата")
+        guard let vc = navC.viewControllers.last as? MainScreenViewController else { return }
+        createNavC(root: vc)
+        if let weather = vc.presenter?.getLastWeater() {
+            Storage.saveWeatherModel(weather)
+        }
     }
 
     private func createMainScreen(for city: City) -> MainScreenViewController {
         let view = MainScreenViewController()
         let model = MainScreenModel()
         let presenter = MainScreenPresenter(view, model, self, city)
+        view.presenter = presenter
+        model.presenter = presenter
+        return view
+    }
+
+    private func createMainScreen(for weather: WeatherModel) -> MainScreenViewController {
+        let view = MainScreenViewController()
+        let model = MainScreenModel()
+        let presenter = MainScreenPresenter(view, model, self, weather)
         view.presenter = presenter
         model.presenter = presenter
         return view
@@ -89,5 +117,10 @@ final class AppCoordinator {
         view.presenter = presenter
         model.presenter = presenter
         return view
+    }
+
+    private func makeNavCRoot() {
+        window?.rootViewController = navC
+        updateNavBar()
     }
 }

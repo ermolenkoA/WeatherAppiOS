@@ -127,12 +127,7 @@ final class CityChoiceViewController: UIViewController {
         inputLocation.delegate = self
         setupTapGesture()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter?.updateNavBar()
-    }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }

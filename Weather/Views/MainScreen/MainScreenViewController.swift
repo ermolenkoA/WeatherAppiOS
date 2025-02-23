@@ -5,7 +5,7 @@ import SnapKit
 final class MainScreenViewController: UIViewController {
 
     var presenter: MainScreenPresenter?
-
+    
     lazy var refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(refreshData), for: .valueChanged)
@@ -84,10 +84,6 @@ final class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = R.color.gray900()
         makeConstraints()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        presenter?.updateNavBar()
         presenter?.prepareView()
     }
     
