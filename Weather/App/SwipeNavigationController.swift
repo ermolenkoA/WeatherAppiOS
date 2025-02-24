@@ -22,6 +22,17 @@ final class SwipeNavigationController: UINavigationController,
         interactivePopGesture.isEnabled = false
     }
 
+    @discardableResult
+    override func popViewController(animated: Bool) -> UIViewController? {
+        setNavigationBarHidden(viewControllers.count == 2, animated: true)
+        return super.popViewController(animated: animated)
+    }
+
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        setNavigationBarHidden(viewControllers.isEmpty, animated: true)
+        super.pushViewController(viewController, animated: animated)
+    }
+
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return viewControllers.count > 1
     }

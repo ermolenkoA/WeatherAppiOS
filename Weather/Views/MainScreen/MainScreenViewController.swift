@@ -48,6 +48,7 @@ final class MainScreenViewController: UIViewController {
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
         view.clipsToBounds = true
+        view.isUserInteractionEnabled = true
         return view
     }()
 
@@ -85,13 +86,18 @@ final class MainScreenViewController: UIViewController {
         view.backgroundColor = R.color.gray900()
         makeConstraints()
         presenter?.prepareView()
+        weatherView.delegate = presenter
     }
-    
+
     func setWeatherData(_ data: WeatherModel) {
         weatherView.setData(data)
         hourWeatherCollectionView.setData(data: data.hourWeather)
         propertiesWeatherTableView.setData(data: data.properties)
         dayWeatherCollectionView.setData(data: data.dailyweather)
+    }
+
+    func showButton() {
+        weatherView.isLoupeHidden = false
     }
 
     @objc private func refreshData() {

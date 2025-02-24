@@ -21,16 +21,12 @@ final class AppCoordinator {
         window?.makeKeyAndVisible()
     }
 
-    func updateNavBar() {
-        if navC.viewControllers.count == 1 {
-            navC.setNavigationBarHidden(true, animated: true)
-        } else if navC.isNavigationBarHidden {
-            navC.setNavigationBarHidden(false, animated: true)
-        }
-    }
-
     func pushMainScreen(city: City) {
         pushScreen(createMainScreen(for: city))
+    }
+
+    func pushCityChoiceScreen() {
+        pushScreen(createCityChoiceScreen())
     }
 
     func createNavC(root: UIViewController) {
@@ -81,12 +77,12 @@ final class AppCoordinator {
 
     @objc private func backButtonTapped() {
         navC.popViewController(animated: true)
-        updateNavBar()
     }
 
     @objc private func plusButtonTapped() {
         guard let vc = navC.viewControllers.last as? MainScreenViewController else { return }
         createNavC(root: vc)
+        vc.showButton()
         if let weather = vc.presenter?.getLastWeater() {
             Storage.saveWeatherModel(weather)
         }
@@ -121,6 +117,5 @@ final class AppCoordinator {
 
     private func makeNavCRoot() {
         window?.rootViewController = navC
-        updateNavBar()
     }
 }

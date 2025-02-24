@@ -136,9 +136,9 @@
 		442D0C5C2CBAFA40009A4298 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				442DBC9B2D67B29C00AD4454 /* SwipeNavigationController.swift */,
-				44EC76F22CB6F0BD0023B313 /* SceneDelegate.swift */,
 				44EC76F02CB6F0BD0023B313 /* AppDelegate.swift */,
+				44EC76F22CB6F0BD0023B313 /* SceneDelegate.swift */,
+				442DBC9B2D67B29C00AD4454 /* SwipeNavigationController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -254,9 +254,9 @@
 		44CD0B4D2D4D34B6007B52CE /* CityChoiceScreen */ = {
 			isa = PBXGroup;
 			children = (
+				44CD0B502D4D356D007B52CE /* CityChoiceViewController.swift */,
 				44919A5E2D53C4CE00D9F607 /* SavedCitiesTableViewCell.swift */,
 				44919A5C2D53C4A100D9F607 /* SavedCitiesTableView.swift */,
-				44CD0B502D4D356D007B52CE /* CityChoiceViewController.swift */,
 				447E64092D56B5790030C72B /* SearchTableView.swift */,
 				447E640B2D56B60C0030C72B /* SearchTableViewCell.swift */,
 			);
@@ -282,8 +282,8 @@
 		44EC76EF2CB6F0BD0023B313 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				4474A5B62D49568300D4BD62 /* Network */,
 				442D0C5C2CBAFA40009A4298 /* App */,
+				4474A5B62D49568300D4BD62 /* Network */,
 				442D0C5F2CBAFBBC009A4298 /* Models */,
 				442D0C622CBB12E5009A4298 /* Views */,
 				442D0C632CBB130F009A4298 /* Presenters */,

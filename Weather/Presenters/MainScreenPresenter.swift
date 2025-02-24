@@ -25,9 +25,10 @@ final class MainScreenPresenter {
                      _ model: MainScreenModel? = nil,
                      _ coordinator: AppCoordinator? = nil,
                      _ weather: WeatherModel
-                    )  {
+                    ) {
         self.init(view, model, coordinator, weather.city)
         lastWeather = weather
+        view?.showButton()
     }
 
     func updateMainScreen() {
@@ -106,5 +107,11 @@ final class MainScreenPresenter {
         DispatchQueue.main.async { [weak self] in
             self?.view?.present(alertController, animated: true)
         }
+    }
+}
+
+extension MainScreenPresenter: WeatherViewDelegate {
+    func loupePressed() {
+        coordinator?.pushCityChoiceScreen()
     }
 }
