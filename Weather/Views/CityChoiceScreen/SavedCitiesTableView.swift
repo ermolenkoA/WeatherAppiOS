@@ -1,7 +1,18 @@
 import UIKit
 
+protocol SavedCitiesTableViewDelegate: AnyObject {
+    func didSelectCity(_ city: City)
+    func updateTableHeight(with height: CGFloat)
+}
+
 final class SavedCitiesTableView: UITableView {
+    enum Constants {
+        static let maxCities = 3
+        static let rowHeight: CGFloat = 55
+    }
+
     private var data: [City]
+    weak var citySelectionDelegate: SavedCitiesTableViewDelegate?
 
     init() {
         data = []
@@ -17,20 +28,16 @@ final class SavedCitiesTableView: UITableView {
 
     override func reloadData() {
         super.reloadData()
-        if data.count <= 3 && !data.isEmpty {
-            isScrollEnabled = false
-            contentInset = UIEdgeInsets(top: CGFloat((3 - data.count) * 50), left: 0, bottom: 0, right: 0)
-        } else {
-            isScrollEnabled = true
-            contentInset = .zero
-        }
+        citySelectionDelegate?.updateTableHeight(
+            with: Constants.rowHeight * CGFloat(min(data.count, Constants.maxCities))
+        )
     }
 
     private func setupTableView() {
         dataSource = self
         delegate = self
         register(SavedCitiesTableViewCell.self, forCellReuseIdentifier: SavedCitiesTableViewCell.identifier)
-        backgroundColor = .clear
+        backgroundColor = R.color.gray600()
     }
 
     func setData(data: [City]) {
@@ -61,6 +68,7 @@ extension SavedCitiesTableView: UITableViewDataSource {
 
         let cellData = data[indexPath.row]
         cell.configure(with: cellData)
+        cell.citySelectionDelegate = citySelectionDelegate
         return cell
     }
 }
@@ -69,6 +77,6 @@ extension SavedCitiesTableView: UITableViewDataSource {
 
 extension SavedCitiesTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return Constants.rowHeight
     }
 }

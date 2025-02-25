@@ -21,6 +21,13 @@ final class CityChoiceModel {
              latitude: 55.7558,
              longitude: 37.6173
             ),
+        City(nameEN: "Borisov",
+             nameRU: "Борисов",
+             addInfoEN: "Belarus",
+             addInfoRU: "Беларусь",
+             latitude: 54.2255,
+             longitude: 28.4924
+            ),
         City(nameEN: "Saint Petersburg",
              nameRU: "Санкт-Петербург",
              addInfoEN: "Cultural capital of Russia",

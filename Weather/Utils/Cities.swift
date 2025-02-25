@@ -1,6 +1,6 @@
 import UIKit
 
-struct City: Codable {
+struct City: Codable, Equatable {
     let nameEN: String
     let nameRU: String
     private let addInfoEN: String

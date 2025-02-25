@@ -7,29 +7,28 @@ final class MainScreenPresenter {
     private var model: MainScreenModel?
     private weak var coordinator: AppCoordinator?
 
-    let city: City
+    private let city: City
+    private var lastWeather: WeatherModel?
 
     init(_ view: MainScreenViewController? = nil,
          _ model: MainScreenModel? = nil,
          _ coordinator: AppCoordinator? = nil,
-         _ city: City) {
+         _ city: City
+        ) {
         self.view = view
         self.model = model
         self.coordinator = coordinator
         self.city = city
     }
 
-    func prepareView() {
-        if let data = Storage.loadWeatherModel() {
-            view?.setWeatherData(data)
-        } else {
-            view?.activityIndicatorView.startAnimating()
-            updateMainScreen()
-        }
-    }
-
-    func updateNavBar() {
-        coordinator?.updateNavBar()
+    convenience init(_ view: MainScreenViewController? = nil,
+                     _ model: MainScreenModel? = nil,
+                     _ coordinator: AppCoordinator? = nil,
+                     _ weather: WeatherModel
+                    ) {
+        self.init(view, model, coordinator, weather.city)
+        lastWeather = weather
+        view?.showButton()
     }
 
     func updateMainScreen() {
@@ -69,14 +68,35 @@ final class MainScreenPresenter {
 
             DispatchQueue.main.async {
                 view.setWeatherData(data)
-                Storage.saveWeatherModel(data)
                 view.refreshControl.endRefreshing()
                 view.activityIndicatorView.stopAnimating()
+                self?.coordinator?.managePlusButton(vc: view)
+                if self?.coordinator?.isFirstScreen == true {
+                    Storage.saveWeatherModel(data)
+                }
+                self?.lastWeather = data
             }
         }
     }
 
-    func showError(_ message: String) {
+    func getLastWeater() -> WeatherModel? {
+        lastWeather
+    }
+
+    func getCity() -> City {
+        city
+    }
+
+    func prepareView() {
+        if let lastWeather {
+            view?.setWeatherData(lastWeather)
+        } else {
+            view?.activityIndicatorView.startAnimating()
+            updateMainScreen()
+        }
+    }
+
+    private func showError(_ message: String) {
         let alertController = UIAlertController(
             title: R.string.localizable.error(),
             message: message,
@@ -91,5 +111,11 @@ final class MainScreenPresenter {
         DispatchQueue.main.async { [weak self] in
             self?.view?.present(alertController, animated: true)
         }
+    }
+}
+
+extension MainScreenPresenter: WeatherViewDelegate {
+    func loupePressed() {
+        coordinator?.pushCityChoiceScreen()
     }
 }

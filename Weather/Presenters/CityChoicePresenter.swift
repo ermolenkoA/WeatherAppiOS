@@ -36,6 +36,7 @@ final class CityChoicePresenter {
         )
 
         view?.searchCitiesTableView.searchDelegate = self
+        view?.savedCitiesTableView.citySelectionDelegate = self
     }
 
     deinit {
@@ -110,8 +111,8 @@ final class CityChoicePresenter {
         coordinator?.pushMainScreen(city: savedCity)
     }
 
-    func updateNavBar() {
-        coordinator?.updateNavBar()
+    func loadLastCities() {
+        view?.savedCitiesTableView.setData(data: Storage.getLastCities())
     }
 }
 
@@ -119,5 +120,15 @@ extension CityChoicePresenter: SearchTableViewDelegate {
     func select(city: City) {
         savedCity = city
         view?.view.endEditing(true)
+    }
+}
+
+extension CityChoicePresenter: SavedCitiesTableViewDelegate {
+    func updateTableHeight(with height: CGFloat) {
+        view?.savedCitiesTableViewHeightConstraint?.update(offset: height)
+    }
+    
+    func didSelectCity(_ city: City) {
+        coordinator?.pushMainScreen(city: city)
     }
 }

@@ -41,7 +41,9 @@ struct ForecastDate: Codable {
     ] }
 
     init(date: Date) {
-        let calendar = Calendar.current
+        let utcTimeZone = TimeZone(abbreviation: "UTC")!
+        var calendar = Calendar.current
+        calendar.timeZone = utcTimeZone
         self.weekday = calendar.component(.weekday, from: date)
         self.month = calendar.component(.month, from: date)
         self.day = calendar.component(.day, from: date)

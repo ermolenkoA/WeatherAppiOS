@@ -5,7 +5,7 @@ import SnapKit
 final class MainScreenViewController: UIViewController {
 
     var presenter: MainScreenPresenter?
-
+    
     lazy var refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         control.addTarget(self, action: #selector(refreshData), for: .valueChanged)
@@ -48,6 +48,7 @@ final class MainScreenViewController: UIViewController {
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
         view.clipsToBounds = true
+        view.isUserInteractionEnabled = true
         return view
     }()
 
@@ -84,18 +85,19 @@ final class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = R.color.gray900()
         makeConstraints()
+        presenter?.prepareView()
+        weatherView.delegate = presenter
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        presenter?.updateNavBar()
-        presenter?.prepareView()
-    }
-    
     func setWeatherData(_ data: WeatherModel) {
         weatherView.setData(data)
         hourWeatherCollectionView.setData(data: data.hourWeather)
         propertiesWeatherTableView.setData(data: data.properties)
         dayWeatherCollectionView.setData(data: data.dailyweather)
+    }
+
+    func showButton() {
+        weatherView.isLoupeHidden = false
     }
 
     @objc private func refreshData() {
