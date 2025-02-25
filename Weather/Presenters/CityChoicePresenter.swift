@@ -91,7 +91,17 @@ final class CityChoicePresenter {
         }
         savedCity = nil
         view?.startSearching()
-        model?.getCities(with: newText, count: maxCities, completion: { [weak self] _, cities in
+        model?.getCities(with: newText, count: maxCities, completion: { [weak self] error, cities in
+            if let error {
+                switch error {
+                case .fileNotFound:
+                    Logger.log(level: .error, instance: self, message: "JSON file not found")
+                case .invalidFormat:
+                    Logger.log(level: .error, instance: self, message: "Format in JSON file is invalid")
+                case .accessDenied:
+                    Logger.log(level: .error, instance: self, message: "Access to JSON file is denied")
+                }
+            }
             DispatchQueue.main.async {
                 self?.view?.dataFound = !cities.isEmpty
                 self?.view?.endSearching()

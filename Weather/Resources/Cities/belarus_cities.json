@@ -1,0 +1,938 @@
+[
+  {
+    "nameEN": "Minsk",
+    "nameRU": "Минск",
+    "addInfoEN": "Belarus",
+    "addInfoRU": "Беларусь",
+    "latitude": 53.9,
+    "longitude": 27.57
+  },
+  {
+    "nameEN": "Barysaw",
+    "nameRU": "Борисов",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.2279,
+    "longitude": 28.505
+  },
+  {
+    "nameEN": "Salihorsk",
+    "nameRU": "Солигорск",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 52.7865,
+    "longitude": 27.5415
+  },
+  {
+    "nameEN": "Maladzyechna",
+    "nameRU": "Молодечно",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.3167,
+    "longitude": 26.8333
+  },
+  {
+    "nameEN": "Zhodzina",
+    "nameRU": "Жодино",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.0981,
+    "longitude": 28.3325
+  },
+  {
+    "nameEN": "Slutsk",
+    "nameRU": "Слуцк",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.0278,
+    "longitude": 27.5614
+  },
+  {
+    "nameEN": "Dzyarzhynsk",
+    "nameRU": "Дзержинск",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.6833,
+    "longitude": 27.1333
+  },
+  {
+    "nameEN": "Vileyka",
+    "nameRU": "Вилейка",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.4833,
+    "longitude": 26.9167
+  },
+  {
+    "nameEN": "Smalyavichy",
+    "nameRU": "Смолевичи",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.0167,
+    "longitude": 28.0853
+  },
+  {
+    "nameEN": "Maryina Horka",
+    "nameRU": "Марьина Горка",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.5114,
+    "longitude": 28.1417
+  },
+  {
+    "nameEN": "Fanipal",
+    "nameRU": "Фаниполь",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.75,
+    "longitude": 27.35
+  },
+  {
+    "nameEN": "Stolbtsy",
+    "nameRU": "Столбцы",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.4833,
+    "longitude": 26.75
+  },
+  {
+    "nameEN": "Zaslawye",
+    "nameRU": "Заславль",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.0,
+    "longitude": 27.2833
+  },
+  {
+    "nameEN": "Niasvizh",
+    "nameRU": "Несвиж",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.2167,
+    "longitude": 26.6667
+  },
+  {
+    "nameEN": "Lahoysk",
+    "nameRU": "Логойск",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.2,
+    "longitude": 27.85
+  },
+  {
+    "nameEN": "Berezino",
+    "nameRU": "Березино",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.8397,
+    "longitude": 28.9906
+  },
+  {
+    "nameEN": "Lyuban",
+    "nameRU": "Любань",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 52.7997,
+    "longitude": 27.9931
+  },
+  {
+    "nameEN": "Kletsk",
+    "nameRU": "Клецк",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.0667,
+    "longitude": 26.6333
+  },
+  {
+    "nameEN": "Staryya Darohi",
+    "nameRU": "Старые Дороги",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.05,
+    "longitude": 28.2833
+  },
+  {
+    "nameEN": "Uzda",
+    "nameRU": "Узда",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.4667,
+    "longitude": 27.2167
+  },
+  {
+    "nameEN": "Cherven",
+    "nameRU": "Червень",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.7167,
+    "longitude": 28.4167
+  },
+  {
+    "nameEN": "Kopyl",
+    "nameRU": "Копыль",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 53.15,
+    "longitude": 27.1667
+  },
+  {
+    "nameEN": "Valozhyn",
+    "nameRU": "Воложин",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.0833,
+    "longitude": 26.5333
+  },
+  {
+    "nameEN": "Krupki",
+    "nameRU": "Крупки",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.3167,
+    "longitude": 29.1333
+  },
+  {
+    "nameEN": "Myadel",
+    "nameRU": "Мядель",
+    "addInfoEN": "Belarus, Minsk Region",
+    "addInfoRU": "Беларусь, Минская область",
+    "latitude": 54.8667,
+    "longitude": 26.9333
+  },
+  {
+    "nameEN": "Mogilev",
+    "nameRU": "Могилёв",
+    "addInfoEN": "Belarus",
+    "addInfoRU": "Беларусь",
+    "latitude": 53.9168,
+    "longitude": 30.3449
+  },
+  {
+    "nameEN": "Babruysk",
+    "nameRU": "Бобруйск",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.1384,
+    "longitude": 29.2214
+  },
+  {
+    "nameEN": "Asipovichy",
+    "nameRU": "Осиповичи",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.3019,
+    "longitude": 28.6386
+  },
+  {
+    "nameEN": "Horki",
+    "nameRU": "Горки",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 54.2833,
+    "longitude": 30.9833
+  },
+  {
+    "nameEN": "Krychaw",
+    "nameRU": "Кричев",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.6917,
+    "longitude": 31.7042
+  },
+  {
+    "nameEN": "Bykhaw",
+    "nameRU": "Быхов",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.5186,
+    "longitude": 30.2458
+  },
+  {
+    "nameEN": "Klimavichy",
+    "nameRU": "Климовичи",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.6167,
+    "longitude": 31.9667
+  },
+  {
+    "nameEN": "Kastsyukovichy",
+    "nameRU": "Костюковичи",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.35,
+    "longitude": 32.05
+  },
+  {
+    "nameEN": "Shklow",
+    "nameRU": "Шклов",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 54.2,
+    "longitude": 30.2833
+  },
+  {
+    "nameEN": "Mstsislaw",
+    "nameRU": "Мстиславль",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 54.0167,
+    "longitude": 31.7167
+  },
+  {
+    "nameEN": "Chavusy",
+    "nameRU": "Чаусы",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.8,
+    "longitude": 30.9833
+  },
+  {
+    "nameEN": "Bialynichy",
+    "nameRU": "Белинычи",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 54.2667,
+    "longitude": 29.7167
+  },
+  {
+    "nameEN": "Kirausk",
+    "nameRU": "Кировск",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.2667,
+    "longitude": 29.4667
+  },
+  {
+    "nameEN": "Cherykaw",
+    "nameRU": "Чериков",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.5667,
+    "longitude": 31.3833
+  },
+  {
+    "nameEN": "Slawharad",
+    "nameRU": "Славгород",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.45,
+    "longitude": 31.0
+  },
+  {
+    "nameEN": "Klicheu",
+    "nameRU": "Кличев",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 53.4833,
+    "longitude": 29.3333
+  },
+  {
+    "nameEN": "Kruhloye",
+    "nameRU": "Круглое",
+    "addInfoEN": "Belarus, Mogilev Region",
+    "addInfoRU": "Беларусь, Могилёвская область",
+    "latitude": 54.25,
+    "longitude": 29.8
+  },
+  {
+    "nameEN": "Grodno",
+    "nameRU": "Гродно",
+    "addInfoEN": "Belarus",
+    "addInfoRU": "Беларусь",
+    "latitude": 53.6694,
+    "longitude": 23.8131
+  },
+  {
+    "nameEN": "Lida",
+    "nameRU": "Лида",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.8833,
+    "longitude": 25.2997
+  },
+  {
+    "nameEN": "Slonim",
+    "nameRU": "Слоним",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.0864,
+    "longitude": 25.3167
+  },
+  {
+    "nameEN": "Vawkavysk",
+    "nameRU": "Волковыск",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.15,
+    "longitude": 24.45
+  },
+  {
+    "nameEN": "Smarhon",
+    "nameRU": "Сморгонь",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 54.48,
+    "longitude": 26.4
+  },
+  {
+    "nameEN": "Navahrudak",
+    "nameRU": "Новогрудок",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.6,
+    "longitude": 25.8167
+  },
+  {
+    "nameEN": "Ashmyany",
+    "nameRU": "Ошмяны",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 54.4333,
+    "longitude": 25.9333
+  },
+  {
+    "nameEN": "Shchuchyn",
+    "nameRU": "Щучин",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.6,
+    "longitude": 24.7333
+  },
+  {
+    "nameEN": "Astravyets",
+    "nameRU": "Островец",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 54.6167,
+    "longitude": 25.9333
+  },
+  {
+    "nameEN": "Mosty",
+    "nameRU": "Мосты",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.4167,
+    "longitude": 24.5333
+  },
+  {
+    "nameEN": "Skidel",
+    "nameRU": "Скидель",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.5833,
+    "longitude": 24.2167
+  },
+  {
+    "nameEN": "Biarozawka",
+    "nameRU": "Берёзовка",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.7167,
+    "longitude": 25.5
+  },
+  {
+    "nameEN": "Dyatlava",
+    "nameRU": "Дятлово",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.4667,
+    "longitude": 25.4167
+  },
+  {
+    "nameEN": "Ivye",
+    "nameRU": "Ивье",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.9333,
+    "longitude": 25.7667
+  },
+  {
+    "nameEN": "Svislach",
+    "nameRU": "Свислочь",
+    "addInfoEN": "Belarus, Grodno Region",
+    "addInfoRU": "Беларусь, Гродненская область",
+    "latitude": 53.0333,
+    "longitude": 24.0833
+  },
+  {
+    "nameEN": "Vitebsk",
+    "nameRU": "Витебск",
+    "addInfoEN": "Belarus",
+    "addInfoRU": "Беларусь",
+    "latitude": 55.1904,
+    "longitude": 30.2049
+  },
+  {
+    "nameEN": "Orsha",
+    "nameRU": "Орша",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 54.5156,
+    "longitude": 30.4106
+  },
+  {
+    "nameEN": "Polotsk",
+    "nameRU": "Полоцк",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.4853,
+    "longitude": 28.7852
+  },
+  {
+    "nameEN": "Novopolotsk",
+    "nameRU": "Новополоцк",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.5311,
+    "longitude": 28.5982
+  },
+  {
+    "nameEN": "Lepel",
+    "nameRU": "Лепель",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 54.8811,
+    "longitude": 28.6989
+  },
+  {
+    "nameEN": "Postavy",
+    "nameRU": "Поставы",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.1167,
+    "longitude": 26.8333
+  },
+  {
+    "nameEN": "Glubokoye",
+    "nameRU": "Глубокое",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.1333,
+    "longitude": 27.6833
+  },
+  {
+    "nameEN": "Braslaw",
+    "nameRU": "Браслав",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.6333,
+    "longitude": 27.0333
+  },
+  {
+    "nameEN": "Chashniki",
+    "nameRU": "Чашники",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 54.8583,
+    "longitude": 29.1603
+  },
+  {
+    "nameEN": "Hlybokaye",
+    "nameRU": "Глубокое",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.1333,
+    "longitude": 27.6833
+  },
+  {
+    "nameEN": "Sharkawshchyna",
+    "nameRU": "Шарковщина",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.3667,
+    "longitude": 27.4667
+  },
+  {
+    "nameEN": "Dubrowna",
+    "nameRU": "Дубровно",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 54.5667,
+    "longitude": 30.6833
+  },
+  {
+    "nameEN": "Miory",
+    "nameRU": "Миоры",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.6167,
+    "longitude": 27.6167
+  },
+  {
+    "nameEN": "Verkhnedvinsk",
+    "nameRU": "Верхнедвинск",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.7833,
+    "longitude": 27.9333
+  },
+  {
+    "nameEN": "Senno",
+    "nameRU": "Сенно",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 54.8167,
+    "longitude": 29.7
+  },
+  {
+    "nameEN": "Navalukoml",
+    "nameRU": "Новолукомль",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 54.6667,
+    "longitude": 29.15
+  },
+  {
+    "nameEN": "Haradok",
+    "nameRU": "Городок",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.4667,
+    "longitude": 29.9833
+  },
+  {
+    "nameEN": "Baran",
+    "nameRU": "Барань",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 54.4833,
+    "longitude": 30.3333
+  },
+  {
+    "nameEN": "Tolochin",
+    "nameRU": "Толочин",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 54.4086,
+    "longitude": 29.7042
+  },
+  {
+    "nameEN": "Dokshytsy",
+    "nameRU": "Докшицы",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 54.8911,
+    "longitude": 27.7622
+  },
+  {
+    "nameEN": "Disna",
+    "nameRU": "Дисна",
+    "addInfoEN": "Belarus, Vitebsk Region",
+    "addInfoRU": "Беларусь, Витебская область",
+    "latitude": 55.5667,
+    "longitude": 28.2167
+  },
+  {
+    "nameEN": "Gomel",
+    "nameRU": "Гомель",
+    "addInfoEN": "Belarus",
+    "addInfoRU": "Беларусь",
+    "latitude": 52.4345,
+    "longitude": 30.9754
+  },
+  {
+    "nameEN": "Mozyr",
+    "nameRU": "Мозырь",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.05,
+    "longitude": 29.2667
+  },
+  {
+    "nameEN": "Zhlobin",
+    "nameRU": "Жлобин",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.8922,
+    "longitude": 30.0286
+  },
+  {
+    "nameEN": "Rechytsa",
+    "nameRU": "Речица",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.3667,
+    "longitude": 30.3833
+  },
+  {
+    "nameEN": "Svetlogorsk",
+    "nameRU": "Светлогорск",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.6333,
+    "longitude": 29.7333
+  },
+  {
+    "nameEN": "Kalinkavichy",
+    "nameRU": "Калинковичи",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.1333,
+    "longitude": 29.3333
+  },
+  {
+    "nameEN": "Rogachev",
+    "nameRU": "Рогачёв",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 53.1,
+    "longitude": 30.05
+  },
+  {
+    "nameEN": "Dobrush",
+    "nameRU": "Добруш",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.4167,
+    "longitude": 31.3167
+  },
+  {
+    "nameEN": "Zhitkovichi",
+    "nameRU": "Житковичи",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.2167,
+    "longitude": 27.8667
+  },
+  {
+    "nameEN": "Khoiniki",
+    "nameRU": "Хойники",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 51.8833,
+    "longitude": 29.9167
+  },
+  {
+    "nameEN": "Petrykaw",
+    "nameRU": "Петриков",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.1286,
+    "longitude": 28.4931
+  },
+  {
+    "nameEN": "Chechersk",
+    "nameRU": "Чечерск",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.9167,
+    "longitude": 30.9167
+  },
+  {
+    "nameEN": "Yelsk",
+    "nameRU": "Ельск",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 51.8167,
+    "longitude": 29.2
+  },
+  {
+    "nameEN": "Buda-Kashalyova",
+    "nameRU": "Буда-Кошелёво",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 53.7833,
+    "longitude": 30.1667
+  },
+  {
+    "nameEN": "Vetka",
+    "nameRU": "Ветка",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.5667,
+    "longitude": 31.1833
+  },
+  {
+    "nameEN": "Narowlia",
+    "nameRU": "Наровля",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 51.8,
+    "longitude": 29.5
+  },
+  {
+    "nameEN": "Vasilevichy",
+    "nameRU": "Василевичи",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.25,
+    "longitude": 29.8333
+  },
+  {
+    "nameEN": "Turov",
+    "nameRU": "Туров",
+    "addInfoEN": "Belarus, Gomel Region",
+    "addInfoRU": "Беларусь, Гомельская область",
+    "latitude": 52.0667,
+    "longitude": 27.7333
+  },
+  {
+    "nameEN": "Brest",
+    "nameRU": "Брест",
+    "addInfoEN": "Belarus",
+    "addInfoRU": "Беларусь",
+    "latitude": 52.0976,
+    "longitude": 23.7341
+  },
+  {
+    "nameEN": "Baranovichi",
+    "nameRU": "Барановичи",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 53.1327,
+    "longitude": 26.0136
+  },
+  {
+    "nameEN": "Pinsk",
+    "nameRU": "Пинск",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.1229,
+    "longitude": 26.0951
+  },
+  {
+    "nameEN": "Kobryn",
+    "nameRU": "Кобрин",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.2136,
+    "longitude": 24.3569
+  },
+  {
+    "nameEN": "Beryoza",
+    "nameRU": "Берёза",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.5333,
+    "longitude": 24.9833
+  },
+  {
+    "nameEN": "Luninets",
+    "nameRU": "Лунинец",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.25,
+    "longitude": 26.8
+  },
+  {
+    "nameEN": "Ivacevichy",
+    "nameRU": "Ивацевичи",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.7,
+    "longitude": 25.34
+  },
+  {
+    "nameEN": "Pruzhany",
+    "nameRU": "Пружаны",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.5564,
+    "longitude": 24.4624
+  },
+  {
+    "nameEN": "Ivanovo",
+    "nameRU": "Иваново",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.1431,
+    "longitude": 25.5384
+  },
+  {
+    "nameEN": "Drahichyn",
+    "nameRU": "Дрогичин",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.1892,
+    "longitude": 25.1509
+  },
+  {
+    "nameEN": "Zhabinka",
+    "nameRU": "Жабинка",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.2,
+    "longitude": 24.0167
+  },
+  {
+    "nameEN": "Stolin",
+    "nameRU": "Столин",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 51.8833,
+    "longitude": 26.85
+  },
+  {
+    "nameEN": "Hantsavichy",
+    "nameRU": "Ганцевичи",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.7667,
+    "longitude": 26.4333
+  },
+  {
+    "nameEN": "Malaryta",
+    "nameRU": "Малорита",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 51.8,
+    "longitude": 24.0833
+  },
+  {
+    "nameEN": "Mikashevichy",
+    "nameRU": "Микашевичи",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.2167,
+    "longitude": 27.4833
+  },
+  {
+    "nameEN": "Belaazyorsk",
+    "nameRU": "Белоозёрск",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.4681,
+    "longitude": 25.1799
+  },
+  {
+    "nameEN": "Lyakhavichy",
+    "nameRU": "Ляховичи",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 53.0333,
+    "longitude": 26.2667
+  },
+  {
+    "nameEN": "Kamianiec",
+    "nameRU": "Каменец",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.4,
+    "longitude": 23.8167
+  },
+  {
+    "nameEN": "Davyd-Haradok",
+    "nameRU": "Давид-Городок",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.05,
+    "longitude": 27.2167
+  },
+  {
+    "nameEN": "Vysokaye",
+    "nameRU": "Высокое",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.3667,
+    "longitude": 23.3833
+  },
+  {
+    "nameEN": "Kossovo",
+    "nameRU": "Коссово",
+    "addInfoEN": "Belarus, Brest Region",
+    "addInfoRU": "Беларусь, Брестская область",
+    "latitude": 52.7536,
+    "longitude": 25.1547
+  }
+]

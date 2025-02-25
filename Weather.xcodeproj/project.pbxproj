@@ -26,6 +26,11 @@
 		4474A5C62D4BC88900D4BD62 /* SunTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474A5C52D4BC87400D4BD62 /* SunTimes.swift */; };
 		4474A5C82D4BE11A00D4BD62 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474A5C72D4BE10B00D4BD62 /* Date+extension.swift */; };
 		4474A5CA2D4BF35600D4BD62 /* ForecastDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4474A5C92D4BF34300D4BD62 /* ForecastDate.swift */; };
+		4478D16B2D6E616F00C285B1 /* world_cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 4478D1692D6E616F00C285B1 /* world_cities.json */; };
+		4478D16C2D6E616F00C285B1 /* ukraine_cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 4478D1682D6E616F00C285B1 /* ukraine_cities.json */; };
+		4478D16D2D6E616F00C285B1 /* belarus_cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 4478D1662D6E616F00C285B1 /* belarus_cities.json */; };
+		4478D16E2D6E616F00C285B1 /* russia_cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 4478D1672D6E616F00C285B1 /* russia_cities.json */; };
+		4478D1732D6E67E500C285B1 /* FileError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4478D1722D6E67CB00C285B1 /* FileError.swift */; };
 		447E640A2D56B5790030C72B /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E64092D56B5790030C72B /* SearchTableView.swift */; };
 		447E640C2D56B60C0030C72B /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E640B2D56B60C0030C72B /* SearchTableViewCell.swift */; };
 		447EBDCE2D10849100E268AA /* HourWeatherCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447EBDCD2D10849100E268AA /* HourWeatherCollectionView.swift */; };
@@ -76,6 +81,11 @@
 		4474A5C52D4BC87400D4BD62 /* SunTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunTimes.swift; sourceTree = "<group>"; };
 		4474A5C72D4BE10B00D4BD62 /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		4474A5C92D4BF34300D4BD62 /* ForecastDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDate.swift; sourceTree = "<group>"; };
+		4478D1662D6E616F00C285B1 /* belarus_cities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = belarus_cities.json; sourceTree = "<group>"; };
+		4478D1672D6E616F00C285B1 /* russia_cities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = russia_cities.json; sourceTree = "<group>"; };
+		4478D1682D6E616F00C285B1 /* ukraine_cities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ukraine_cities.json; sourceTree = "<group>"; };
+		4478D1692D6E616F00C285B1 /* world_cities.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = world_cities.json; sourceTree = "<group>"; };
+		4478D1722D6E67CB00C285B1 /* FileError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileError.swift; sourceTree = "<group>"; };
 		447E64092D56B5790030C72B /* SearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
 		447E640B2D56B60C0030C72B /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		447EBDCD2D10849100E268AA /* HourWeatherCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourWeatherCollectionView.swift; sourceTree = "<group>"; };
@@ -146,6 +156,7 @@
 		442D0C5D2CBAFAA0009A4298 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4478D16A2D6E616F00C285B1 /* Cities */,
 				4474A5C22D4A59A800D4BD62 /* Extensions */,
 				441B1EF62D491FAC003B1803 /* PropertyInfo.swift */,
 				441B1EF42D491596003B1803 /* Storage.swift */,
@@ -223,6 +234,18 @@
 				4474A5C72D4BE10B00D4BD62 /* Date+extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4478D16A2D6E616F00C285B1 /* Cities */ = {
+			isa = PBXGroup;
+			children = (
+				4478D1722D6E67CB00C285B1 /* FileError.swift */,
+				4478D1662D6E616F00C285B1 /* belarus_cities.json */,
+				4478D1672D6E616F00C285B1 /* russia_cities.json */,
+				4478D1682D6E616F00C285B1 /* ukraine_cities.json */,
+				4478D1692D6E616F00C285B1 /* world_cities.json */,
+			);
+			path = Cities;
 			sourceTree = "<group>";
 		};
 		44CD0B442D4D0166007B52CE /* MainScreen */ = {
@@ -366,6 +389,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4426FD8A2CC961B600FE1FE7 /* Nunito-SemiBold.ttf in Resources */,
+				4478D16B2D6E616F00C285B1 /* world_cities.json in Resources */,
+				4478D16C2D6E616F00C285B1 /* ukraine_cities.json in Resources */,
+				4478D16D2D6E616F00C285B1 /* belarus_cities.json in Resources */,
+				4478D16E2D6E616F00C285B1 /* russia_cities.json in Resources */,
 				44EC76FA2CB6F0BD0023B313 /* Assets.xcassets in Resources */,
 				440E7A7E2CC286550095BBA7 /* Nunito-Bold.ttf in Resources */,
 				449627A52CC11D9300FD7A9D /* Localizable.stringsdict in Resources */,
@@ -386,6 +413,7 @@
 				44CD0B3A2D4CFDEF007B52CE /* Cities.swift in Sources */,
 				447E640A2D56B5790030C72B /* SearchTableView.swift in Sources */,
 				441E49DB2D451E8A00E65A46 /* Property.swift in Sources */,
+				4478D1732D6E67E500C285B1 /* FileError.swift in Sources */,
 				4474A5C62D4BC88900D4BD62 /* SunTimes.swift in Sources */,
 				44F59B852CBAF91D00D09871 /* AppCoordinator.swift in Sources */,
 				44CD0B492D4D1723007B52CE /* Logger.swift in Sources */,
