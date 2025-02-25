@@ -3,6 +3,7 @@ import RswiftResources
 import SnapKit
 
 final class CityChoiceViewController: UIViewController {
+
     enum Constants {
         static let textFieldHeight: CGFloat = 50
         static let textFieldTopHeight: CGFloat = 40
@@ -13,6 +14,8 @@ final class CityChoiceViewController: UIViewController {
 
     var isKeyboardVisible = false
     var textFieldHeightConstraint: Constraint?
+    var savedCitiesTableViewHeightConstraint: Constraint?
+
     var topInset: CGFloat {
         -(inputLocation.frame.origin.y - view.safeAreaInsets.top)
     }
@@ -107,7 +110,8 @@ final class CityChoiceViewController: UIViewController {
     lazy var savedCitiesTableView: SavedCitiesTableView = {
         let tableView = SavedCitiesTableView()
         tableView.allowsSelection = false
-        tableView.separatorColor = R.color.gray500()
+        tableView.separatorColor = R.color.gray400()
+        tableView.layer.cornerRadius = 15
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         return tableView
     }()
@@ -126,6 +130,7 @@ final class CityChoiceViewController: UIViewController {
         makeConstraints()
         inputLocation.delegate = self
         setupTapGesture()
+        presenter?.loadLastCities()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -177,7 +182,7 @@ final class CityChoiceViewController: UIViewController {
         searchCitiesTableView.translatesAutoresizingMaskIntoConstraints = false
 
         headerLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(view.frame.height * 0.3)
+            make.centerY.equalToSuperview().offset(-(Constants.textFieldHeight * 1.5))
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.85)
         }
@@ -198,9 +203,11 @@ final class CityChoiceViewController: UIViewController {
         }
 
         savedCitiesTableView.snp.makeConstraints { make in
-            make.bottom.equalTo(showForecastButton.snp.top).offset(-50)
+            make.bottom.equalTo(showForecastButton.snp.top).offset(-15)
             make.leading.trailing.equalToSuperview().inset(30)
-            make.height.equalTo(150)
+            make.height.equalTo(165)
+            savedCitiesTableViewHeightConstraint =
+            make.height.equalTo(0).constraint
         }
 
         searchCitiesTableView.snp.makeConstraints { make in

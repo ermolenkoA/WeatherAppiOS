@@ -83,6 +83,10 @@ final class MainScreenPresenter {
         lastWeather
     }
 
+    func getCity() -> City {
+        city
+    }
+
     func prepareView() {
         if let lastWeather {
             view?.setWeatherData(lastWeather)

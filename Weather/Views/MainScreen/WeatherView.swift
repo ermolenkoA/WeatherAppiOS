@@ -103,7 +103,7 @@ final class WeatherView: UIImageView {
             UIView.animate(withDuration: 0.1) {
                 self.iconLoupe.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             }
-        case .ended:
+        case .ended, .cancelled, .failed:
             let touchPoint = gesture.location(in: self.iconLoupe)
             UIView.animate(withDuration: 0.1, animations: {
                 self.iconLoupe.transform = .identity

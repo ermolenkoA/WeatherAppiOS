@@ -83,8 +83,10 @@ final class AppCoordinator {
         guard let vc = navC.viewControllers.last as? MainScreenViewController else { return }
         createNavC(root: vc)
         vc.showButton()
-        if let weather = vc.presenter?.getLastWeater() {
+        if let weather = vc.presenter?.getLastWeater(),
+           let city = vc.presenter?.getCity() {
             Storage.saveWeatherModel(weather)
+            Storage.saveCity(city)
         }
     }
 
