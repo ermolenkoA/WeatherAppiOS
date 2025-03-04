@@ -11,7 +11,6 @@ final class HourWeatherCollectionView: UICollectionView {
         self.rowCount = rowCount
         self.columnCount = columnCount
 
-        // Инициализация данных
         self.data = []
 
         let layout = UICollectionViewFlowLayout()

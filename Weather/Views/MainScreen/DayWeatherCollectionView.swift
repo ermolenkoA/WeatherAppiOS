@@ -18,6 +18,7 @@ final class DayWeatherCollectionView: UICollectionView {
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
+        layout.sectionInset = .zero
 
         super.init(frame: .zero, collectionViewLayout: layout)
         self.contentInset = .zero
@@ -77,7 +78,7 @@ extension DayWeatherCollectionView: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath) -> CGSize {
             return CGSize(
                 width: frame.width / 6,
-                height: frame.height - 20)
+                height: frame.height - 10)
     }
 
     func collectionView(

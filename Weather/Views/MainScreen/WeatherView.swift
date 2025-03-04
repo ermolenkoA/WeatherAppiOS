@@ -4,6 +4,7 @@ import RswiftResources
 
 protocol WeatherViewDelegate: AnyObject {
     func loupePressed()
+    func settingsDotPressed()
 }
 
 final class WeatherView: UIImageView {
@@ -14,6 +15,15 @@ final class WeatherView: UIImageView {
         }
         set {
             iconLoupe.isHidden = newValue
+        }
+    }
+
+    var isSettingsHidden: Bool {
+        get {
+            settingsDots.isHidden
+        }
+        set {
+            settingsDots.isHidden = newValue
         }
     }
 
@@ -61,15 +71,29 @@ final class WeatherView: UIImageView {
     }()
 
     lazy var iconLoupe: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFill
-        image.isUserInteractionEnabled = true
-        image.isHidden = true
+        let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass"))
+        imageView.tintColor = .white
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        imageView.isHidden = true
 
         let tapDownGesture = UILongPressGestureRecognizer(target: self, action: #selector(loupePressed(_:)))
         tapDownGesture.minimumPressDuration = 0
-        image.addGestureRecognizer(tapDownGesture)
-        return image
+        imageView.addGestureRecognizer(tapDownGesture)
+        return imageView
+    }()
+
+    lazy var settingsDots: UIImageView = {
+        let imageView = UIImageView(image: UIImage(systemName: "ellipsis.circle"))
+        imageView.tintColor = .white
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = true
+        imageView.isHidden = true
+
+        let tapDownGesture = UILongPressGestureRecognizer(target: self, action: #selector(settingsDotsPressed(_:)))
+        tapDownGesture.minimumPressDuration = 0
+        imageView.addGestureRecognizer(tapDownGesture)
+        return imageView
     }()
 
     override init(frame: CGRect = .zero) {
@@ -87,19 +111,18 @@ final class WeatherView: UIImageView {
     func setData(_ data: WeatherModel) {
         cityLabel.text = data.city.name
         dateLabel.text = data.date.fullForecastDate
-        temperatureLabel.text = R.string.localizable.temperatureC(data.tempC)
-        dayTemperatureLabel.text = R.string.localizable.temperatureC(data.tempMax)
+        temperatureLabel.text = data.tempC.getTemp()
+        dayTemperatureLabel.text = data.tempMax.getTemp()
             + "/"
-            + R.string.localizable.temperatureC(data.tempMin)
+            + data.tempMin.getTemp()
         descriptionLabel.text = data.info.description()
         weatherImageView.image = data.info.mainIcon()
-        iconLoupe.image = R.image.loupe()
         image = data.info.background()
     }
 
     @objc private func loupePressed(_ gesture: UILongPressGestureRecognizer) {
         switch gesture.state {
-        case .began: // Когда нажали
+        case .began:
             UIView.animate(withDuration: 0.1) {
                 self.iconLoupe.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             }
@@ -117,6 +140,26 @@ final class WeatherView: UIImageView {
         }
     }
 
+    @objc private func settingsDotsPressed(_ gesture: UILongPressGestureRecognizer) {
+        switch gesture.state {
+        case .began:
+            UIView.animate(withDuration: 0.1) {
+                self.settingsDots.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            }
+        case .ended, .cancelled, .failed:
+            let touchPoint = gesture.location(in: self.settingsDots)
+            UIView.animate(withDuration: 0.1, animations: {
+                self.settingsDots.transform = .identity
+            }) { _ in
+                if self.settingsDots.bounds.contains(touchPoint) {
+                    self.delegate?.settingsDotPressed()
+                }
+            }
+        default:
+            break
+        }
+    }
+
     private func setupView() {
         addSubview(weatherImageView)
         addSubview(cityLabel)
@@ -125,6 +168,7 @@ final class WeatherView: UIImageView {
         addSubview(dayTemperatureLabel)
         addSubview(descriptionLabel)
         addSubview(iconLoupe)
+        addSubview(settingsDots)
     }
 
     private func setupConstraints() {
@@ -135,12 +179,18 @@ final class WeatherView: UIImageView {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         weatherImageView.translatesAutoresizingMaskIntoConstraints = false
         iconLoupe.translatesAutoresizingMaskIntoConstraints = false
+        settingsDots.translatesAutoresizingMaskIntoConstraints = false
 
         let horizontalInset = 25
         let verticalInset = 20
         iconLoupe.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(verticalInset)
-            make.width.height.equalTo(24)
+            make.width.height.equalTo(27)
+            make.trailing.equalToSuperview().inset(horizontalInset)
+        }
+        settingsDots.snp.makeConstraints { make in
+            make.top.equalTo(iconLoupe.snp.bottom).offset(verticalInset)
+            make.width.height.equalTo(27)
             make.trailing.equalToSuperview().inset(horizontalInset)
         }
         cityLabel.snp.makeConstraints { make in

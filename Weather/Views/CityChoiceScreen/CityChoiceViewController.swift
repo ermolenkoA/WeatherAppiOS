@@ -49,7 +49,7 @@ final class CityChoiceViewController: UIViewController {
 
             attributedText.addAttribute(
                 .foregroundColor,
-                value: R.color.blue()!,
+                value: R.color.blue100()!,
                 range: rangeOfLastWord
             )
         }
@@ -90,7 +90,7 @@ final class CityChoiceViewController: UIViewController {
         }
         config.imagePlacement = .trailing
         config.imagePadding = 8
-        config.baseBackgroundColor = R.color.blue()
+        config.baseBackgroundColor = R.color.blue100()
         config.baseForegroundColor = R.color.gray100()
         config.cornerStyle = .large
         config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12)
@@ -132,9 +132,13 @@ final class CityChoiceViewController: UIViewController {
         setupTapGesture()
         presenter?.loadLastCities()
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+
+    func showSettings() {
+        presenter?.showSettings()
     }
 
     func setSearchCities(_ cities: [City]) {

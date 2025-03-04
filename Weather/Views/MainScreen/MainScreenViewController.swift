@@ -78,6 +78,8 @@ final class MainScreenViewController: UIViewController {
         collectionView.layer.cornerRadius = 15
         collectionView.layer.masksToBounds = true
         collectionView.clipsToBounds = true
+        collectionView.contentInset = .zero
+        collectionView.scrollIndicatorInsets = .zero
         return collectionView
     }()
 
@@ -89,6 +91,11 @@ final class MainScreenViewController: UIViewController {
         weatherView.delegate = presenter
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.updateIfNeeded()
+    }
+
     func setWeatherData(_ data: WeatherModel) {
         weatherView.setData(data)
         hourWeatherCollectionView.setData(data: data.hourWeather)
@@ -98,6 +105,7 @@ final class MainScreenViewController: UIViewController {
 
     func showButton() {
         weatherView.isLoupeHidden = false
+        weatherView.isSettingsHidden = false
     }
 
     @objc private func refreshData() {
@@ -137,7 +145,7 @@ final class MainScreenViewController: UIViewController {
         hourWeatherCollectionView.snp.makeConstraints { make in
             make.top.equalTo(weatherBackgroundView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(140)
+            make.height.equalTo(HourWeatherCollectionViewCell.Constants.totalHeight)
         }
 
         propertiesWeatherTableView.snp.makeConstraints { make in
@@ -149,7 +157,7 @@ final class MainScreenViewController: UIViewController {
         dayWeatherCollectionView.snp.makeConstraints { make in
             make.top.equalTo(propertiesWeatherTableView.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.height.equalTo(160)
+            make.height.equalTo(DayWeatherCollectionViewCell.Constants.totalHeight)
             make.bottom.equalToSuperview()
         }
 

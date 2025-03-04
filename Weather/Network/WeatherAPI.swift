@@ -49,7 +49,9 @@ struct WeatherAPI {
         }
     }
 
-    static let token = ""
+    static var token: String {
+        Storage.getApiKey()
+    }
 
     static private var url: URL {
         var components = URLComponents()

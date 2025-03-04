@@ -53,3 +53,9 @@
 "showForecast" = "Показать прогноз";
 "cancel" = "Отмена";
 "notFound" = "Ничего не найдено";
+"enterApiKey" = "Введите API Key";
+"timeFormat" = "Формат времени";
+"temperatureSettings" = "Температура";
+"saveSettings" = "Сохранить";
+"paste" = "Вставить";
+"settings" = "Настройки";

@@ -24,12 +24,18 @@ final class SwipeNavigationController: UINavigationController,
 
     @discardableResult
     override func popViewController(animated: Bool) -> UIViewController? {
-        setNavigationBarHidden(viewControllers.count == 2, animated: true)
+        setNavigationBarHidden(
+            viewControllers.count == 2 && viewControllers.first is MainScreenViewController,
+            animated: true
+        )
         return super.popViewController(animated: animated)
     }
 
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        setNavigationBarHidden(viewControllers.isEmpty, animated: true)
+        setNavigationBarHidden(
+            viewControllers.isEmpty && viewController is MainScreenViewController,
+            animated: true
+        )
         super.pushViewController(viewController, animated: animated)
     }
 

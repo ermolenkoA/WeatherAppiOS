@@ -2,13 +2,15 @@ import UIKit
 import RswiftResources
 
 final class MainScreenPresenter {
-
+    
     private weak var view: MainScreenViewController?
     private var model: MainScreenModel?
     private weak var coordinator: AppCoordinator?
 
     private let city: City
     private var lastWeather: WeatherModel?
+    private var lastSettings: (isAMPMFormat: Bool, isFahrenheit: Bool) =
+    (Storage.isAMPMFormat(), Storage.isFahrenheit())
 
     init(_ view: MainScreenViewController? = nil,
          _ model: MainScreenModel? = nil,
@@ -54,6 +56,8 @@ final class MainScreenPresenter {
                 case .badAPIKey:
                     message = R.string.localizable.apiKeyError()
                     Logger.log(level: .error, instance: self, message: message)
+                    self?.showError(message, isApiError: true)
+                    return
                 }
                 self?.showError(message)
                 return
@@ -87,6 +91,13 @@ final class MainScreenPresenter {
         city
     }
 
+    func showSettings() {
+        guard let coordinator, let view else { return }
+        coordinator.showSettings(from: view) { [weak self] in
+            self?.updateIfNeeded()
+        }
+    }
+
     func prepareView() {
         if let lastWeather {
             view?.setWeatherData(lastWeather)
@@ -96,18 +107,45 @@ final class MainScreenPresenter {
         }
     }
 
-    private func showError(_ message: String) {
+    func updateIfNeeded() {
+        let newSettings = (Storage.isAMPMFormat(), Storage.isFahrenheit())
+        if lastSettings != newSettings, let lastWeather {
+            lastSettings = newSettings
+            view?.setWeatherData(lastWeather)
+        }
+    }
+
+    private func showError(_ message: String, isApiError: Bool = false) {
         let alertController = UIAlertController(
             title: R.string.localizable.error(),
             message: message,
             preferredStyle: .alert
         )
+        if isApiError {
+            alertController.addAction(.init(
+                title: R.string.localizable.settings(),
+                style: .default) { [self] _ in
+                    if self.coordinator?.isFirstScreen == false
+                        && view?.activityIndicatorView.isAnimating == true {
+                        coordinator?.popAndShowSettings()
+                    } else if let view = self.view {
+                        view.refreshControl.endRefreshing()
+                        self.coordinator?.showSettings(from: view)
+                    }
+                }
+            )
+        }
         alertController.addAction(.init(
             title: "OK",
-            style: .default) { [weak self] _ in
-                self?.view?.refreshControl.endRefreshing()
+            style: .default) { [self] _ in
+                self.view?.refreshControl.endRefreshing()
+                if self.coordinator?.isFirstScreen == false
+                    && view?.activityIndicatorView.isAnimating == true {
+                    coordinator?.popViewController()
+                }
             }
         )
+
         DispatchQueue.main.async { [weak self] in
             self?.view?.present(alertController, animated: true)
         }
@@ -115,7 +153,13 @@ final class MainScreenPresenter {
 }
 
 extension MainScreenPresenter: WeatherViewDelegate {
+
     func loupePressed() {
         coordinator?.pushCityChoiceScreen()
+    }
+
+    func settingsDotPressed() {
+        guard let view = view else { return }
+        showSettings()
     }
 }

@@ -40,6 +40,38 @@ final class AppCoordinator {
         }
     }
 
+    func manageSettingsButton(vc: CityChoiceViewController) {
+        createSettingsButton(for: vc)
+    }
+
+    func showSettings(from vc: UIViewController, completion: (() -> Void)? = nil) {
+        vc.navigationController?.view.isUserInteractionEnabled = false 
+
+        let settingsVC = SettingsViewController {
+            vc.navigationController?.view.isUserInteractionEnabled = true
+            completion?()
+        }
+
+        settingsVC.modalPresentationStyle = .overFullScreen
+        settingsVC.modalTransitionStyle = .crossDissolve
+
+        vc.present(settingsVC, animated: true)
+    }
+
+    func popAndShowSettings() {
+        popViewController()
+        guard let view = navC.viewControllers.last else { return }
+        if let view = view as? CityChoiceViewController {
+            view.showSettings()
+        } else {
+            showSettings(from: view)
+        }
+    }
+
+    func popViewController() {
+        navC.popViewController(animated: true)
+    }
+
     private func pushScreen(_ vc: UIViewController) {
         navC.isNavigationBarHidden = false
         if !navC.viewControllers.isEmpty {
@@ -75,6 +107,19 @@ final class AppCoordinator {
         vc.navigationItem.rightBarButtonItems = [plusButton, rightSpacer]
     }
 
+    private func createSettingsButton(for vc: CityChoiceViewController) {
+        let plusButton = UIBarButtonItem(image: UIImage(systemName: "gearshape"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(settingsButtonTapped))
+        plusButton.tintColor = R.color.gray100()
+
+        let rightSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        rightSpacer.width = 16
+
+        vc.navigationItem.rightBarButtonItems = [plusButton, rightSpacer]
+    }
+
     @objc private func backButtonTapped() {
         navC.popViewController(animated: true)
     }
@@ -88,6 +133,10 @@ final class AppCoordinator {
             Storage.saveWeatherModel(weather)
             Storage.saveCity(city)
         }
+    }
+
+    @objc private func settingsButtonTapped() {
+        (navC.viewControllers.last as? CityChoiceViewController)?.showSettings()
     }
 
     private func createMainScreen(for city: City) -> MainScreenViewController {

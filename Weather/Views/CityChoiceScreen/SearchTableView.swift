@@ -59,10 +59,9 @@ final class SearchTableView: UITableView {
         dataSource = self
         delegate = self
         register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
-        rowHeight = UITableView.automaticDimension
-        estimatedRowHeight = 50
         backgroundColor = .clear
         allowsSelection = false
+        isScrollEnabled = true
     }
 
     private func makeConstraints() {

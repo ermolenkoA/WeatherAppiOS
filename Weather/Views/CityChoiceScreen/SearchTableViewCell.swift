@@ -6,7 +6,7 @@ protocol SearchTableViewDelegate: AnyObject {
 
 final class SearchTableViewCell: UITableViewCell {
     static let identifier = "SearchTableViewCell"
-    
+
     weak var delegate: SearchTableViewDelegate?
     var isAnimationEnabled = true
     private var city: City?
@@ -31,7 +31,7 @@ final class SearchTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
         backgroundColor = .clear
-        addTapAnimation()
+        addTapGesture()
     }
 
     required init?(coder: NSCoder) {
@@ -69,34 +69,34 @@ final class SearchTableViewCell: UITableViewCell {
         descriptionLabel.text = nil
     }
 
-    private func addTapAnimation() {
-        let tapGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        tapGesture.minimumPressDuration = 0
+    private func addTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         addGestureRecognizer(tapGesture)
     }
 
-    @objc private func handleTap(_ gesture: UILongPressGestureRecognizer) {
+    @objc private func handleTap() {
         guard isAnimationEnabled else { return }
-        switch gesture.state {
-        case .began:
-            animateScale(transform: CGAffineTransform(scaleX: 0.95, y: 0.95), alpha: 0.7)
-        case .ended:
-            if let city {
-                delegate?.select(city: city)
+        animateScale(transform: CGAffineTransform(scaleX: 0.95, y: 0.95), alpha: 0.7) {
+            self.animateScale(transform: .identity, alpha: 1.0) {
+                if let city = self.city {
+                    self.delegate?.select(city: city)
+                }
             }
-            animateScale(transform: .identity, alpha: 1.0)
-        case .cancelled:
-            animateScale(transform: .identity, alpha: 1.0)
-        default:
-            break
         }
     }
 
-    private func animateScale(transform: CGAffineTransform, alpha: CGFloat) {
-        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.6, options: .allowUserInteraction, animations: {
-            self.transform = transform
-            self.alpha = alpha
-        }, completion: nil)
+    private func animateScale(transform: CGAffineTransform, alpha: CGFloat, completion: (() -> Void)? = nil) {
+        UIView.animate(
+            withDuration: 0.15,
+            delay: 0,
+            usingSpringWithDamping: 0.6,
+            initialSpringVelocity: 0.6,
+            options: .allowUserInteraction,
+            animations: {
+                self.transform = transform
+                self.alpha = alpha
+            },
+            completion: { _ in completion?() }
+        )
     }
-
 }

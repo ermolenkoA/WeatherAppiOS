@@ -11,6 +11,7 @@ final class CityChoicePresenter {
     private var lastTextFieldText: String?
 
     private var savedCity: City?
+    private var ignoreKeyboardEvents = false
 
     init(
         _ view: CityChoiceViewController?,
@@ -20,23 +21,13 @@ final class CityChoicePresenter {
         self.view = view
         self.model = model
         self.coordinator = coordinator
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShow(_:)),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
-        )
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHide(_:)),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
-        )
-
+        addObserver()
         view?.searchCitiesTableView.searchDelegate = self
         view?.savedCitiesTableView.citySelectionDelegate = self
+
+        if let view = view {
+            coordinator?.manageSettingsButton(vc: view)
+        }
     }
 
     deinit {
@@ -44,7 +35,7 @@ final class CityChoicePresenter {
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
-        guard !isKeyboardVisible, let view else { return }
+        guard !isKeyboardVisible && !ignoreKeyboardEvents, let view else { return }
         isKeyboardVisible = true
         view.inputLocation.transform = CGAffineTransform(
             translationX: 0,
@@ -66,7 +57,7 @@ final class CityChoicePresenter {
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
-        guard let view, isKeyboardVisible else { return }
+        guard let view, isKeyboardVisible && !ignoreKeyboardEvents else { return }
         isKeyboardVisible = false
         lastTextFieldText = view.inputLocation.text
         view.inputLocation.text = savedCity?.name
@@ -123,6 +114,30 @@ final class CityChoicePresenter {
 
     func loadLastCities() {
         view?.savedCitiesTableView.setData(data: Storage.getLastCities())
+    }
+
+    func showSettings() {
+        guard let coordinator, let view else { return }
+        ignoreKeyboardEvents = true
+        coordinator.showSettings(from: view) {
+            self.ignoreKeyboardEvents = false
+        }
+    }
+
+    private func addObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
     }
 }
 

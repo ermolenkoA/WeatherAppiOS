@@ -1,4 +1,5 @@
 "temperatureC" = "%d°C";
+"temperatureF" = "%d°F";
 "temperature" = "Air Temperature";
 "probability" = "Precipitation probability";
 "windVelocity" = "Wind Velocity";
@@ -55,3 +56,11 @@
 "showForecast" = "Show forecast";
 "cancel" = "Cancel";
 "notFound" = "Not found";
+"apiKey" = "API Key";
+"enterApiKey" = "Enter API Key";
+"timeFormat" = "Time Format";
+"temperatureSettings" = "Temperature";
+"saveSettings" = "Save";
+"paste" = "Paste";
+"settings" = "Settings";
+

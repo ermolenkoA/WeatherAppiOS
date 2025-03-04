@@ -6,7 +6,7 @@ struct Property: Codable {
     var value: String {
         return switch info {
         case .avgTemp:
-            R.string.localizable.temperatureC(_value)
+            _value.getTemp()
         case .probability:
             R.string.localizable.percent(_value)
         case .velocity:
